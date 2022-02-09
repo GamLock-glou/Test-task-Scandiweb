@@ -54,7 +54,7 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
                                 <div>{name}</div>
                                 <div>{getPrice(prices, this.props.currency)}</div>
                                 <div>ADD TO CARD</div>
-                                <div>{description}</div>
+                                <div dangerouslySetInnerHTML={{__html: description}} />
                             </div>
                         </div>
                     </div>

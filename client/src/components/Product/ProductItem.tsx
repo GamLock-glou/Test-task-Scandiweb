@@ -1,6 +1,7 @@
 import { Query } from '@apollo/react-components';
 import React, { Component } from 'react';
 import { GET_ONE_PRODUCT } from "../../query/query";
+import Gallery from './Gallery/Gallery';
 
 interface ProductItemProps {
     id: string;
@@ -37,19 +38,13 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
                         category } = data.product;
 
                     return <div className="wrapper">
-                        <div className="productItem">
-                            <div className="productImgList">
-                                {gallery.map((g, index) => {
-                                    if (this.state.isAllImg)
-                                        return <img key={index} onClick={()=>this.onClickImg(index)} src={g} />
-                                    return index < 3 ? <img onClick={() => this.onClickImg(index)} key={index} src={g} /> : null
-                                })}
-                                <div className="buttonShowProduct" onClick={this.onClickShowProduct}>
-                                    {!this.state.isAllImg ? <div>Show</div> : <div>Hide</div>}
-                                </div>
-                            </div>
-                            <div className="productMainImg"><img src={gallery[this.state.indexImg]} /></div>
-                        </div>
+                            <Gallery 
+                                gallery={gallery}
+                                isAllImg={this.state.isAllImg}
+                                onClickImg={this.onClickImg} 
+                                onClickShowProduct={this.onClickShowProduct} 
+                                indexImg={this.state.indexImg}
+                            />
                     </div>
                 }}
             </Query>

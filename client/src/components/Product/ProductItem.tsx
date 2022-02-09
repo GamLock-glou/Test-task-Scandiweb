@@ -1,10 +1,12 @@
 import { Query } from '@apollo/react-components';
 import React, { Component } from 'react';
 import { GET_ONE_PRODUCT } from "../../query/query";
+import { getPrice } from '../../util';
 import Gallery from './Gallery/Gallery';
 
 interface ProductItemProps {
-    id: string;
+    id: string,
+    currency: string,
 }
 
 interface ProductItemState {
@@ -32,12 +34,14 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
 
                     const {
                         name,
-                        inStock,
                         gallery,
                         description,
-                        category } = data.product;
+                        category,
+                        prices,
+                        brand } = data.product;
 
                     return <div className="wrapper">
+                        <div className="productItem">
                             <Gallery 
                                 gallery={gallery}
                                 isAllImg={this.state.isAllImg}
@@ -45,13 +49,21 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
                                 onClickShowProduct={this.onClickShowProduct} 
                                 indexImg={this.state.indexImg}
                             />
+                            <div className="aboutTheProduct">
+                                <div>{brand}</div>
+                                <div>{name}</div>
+                                <div>{getPrice(prices, this.props.currency)}</div>
+                                <div>ADD TO CARD</div>
+                                <div>{description}</div>
+                            </div>
+                        </div>
                     </div>
                 }}
             </Query>
         );
     }
 
-    onClickImg(index) {
+    onClickImg = (index) => {
         this.setState({indexImg: index})
     }
 

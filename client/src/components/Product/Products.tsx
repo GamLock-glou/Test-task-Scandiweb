@@ -14,7 +14,7 @@ export class Products extends Component<ProductsProps> {
         const { currency, categoryTitle, setPathName, pathName } = this.props;
         const id = pathName.split("/", 2)[1];
         if(id)
-            return <ProductItem id={id}/>
+            return <ProductItem id={id} currency={currency}/>
         return (
             <ProductList
                 categoryTitle={categoryTitle}

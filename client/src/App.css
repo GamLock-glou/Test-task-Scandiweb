@@ -282,3 +282,12 @@ li {
     object-fit: cover;
     object-position: 25% -20px;
 }
+
+.productItem {
+    display: flex;
+}
+
+.aboutTheProduct {
+    display: flex;
+    flex-direction: column;
+}

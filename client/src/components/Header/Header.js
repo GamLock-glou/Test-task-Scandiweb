@@ -6,14 +6,11 @@ import CurrencySwitcher from "./CurrencySwitcher";
 export class Header extends Component {
 
     render() {
-        const { setPathName, pathName, setCurrency } = this.props;
+        const { setCurrency } = this.props;
         return (
             <div className="wrapper">
                 <div className="header__wrapper">
-                    <NavBar
-                        pathName={pathName}
-                        setPathName={setPathName}
-                    />
+                    <NavBar />
                     <div className="header__logo">
                         <Logo />
                     </div>

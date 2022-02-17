@@ -29,8 +29,9 @@ query Category($input: CategoryInput) {
         currency {
           label, symbol
         },
-      amount
-      }
+        amount
+      },
+      brand
     }
   }
 }

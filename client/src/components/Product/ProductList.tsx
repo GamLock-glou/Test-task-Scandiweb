@@ -5,20 +5,20 @@ import Product from "./Product";
 
 interface ProductListProps {
   currency: string;
-  categoryTitle: string;
-  setPathName: any;
+  categoryTitle: Record<string, unknown>;
+  
 }
 
 export class ProductList extends React.Component<ProductListProps> {
-
+  
   render() {
-    const { currency, categoryTitle, setPathName } = this.props;
+    const { currency, categoryTitle } = this.props;
     return (
       <Query query={GET_ONE_CATEGORY} variables={{input: { title: categoryTitle }}}>
         {({ data, loading }) => {
 
           if(loading) 
-            return <div>Loading...</div>
+            return <div style={{display:"flex", justifyContent: "center", fontSize: "20px"}}>Loading...</div>
 
           if(!data.category)
             return <div style={{display:"flex", justifyContent: "center", fontSize: "20px", color: "red"}}>Page not found</div>
@@ -33,7 +33,7 @@ export class ProductList extends React.Component<ProductListProps> {
             <div className="productList">
               
                   {products.map((product, key) => (
-                    <Product key={key} currency={currency} product={product} setPathName={setPathName}/>
+                    <Product key={key} currency={currency} product={product} categoryTitle={categoryTitle} />
                   ))}
             </div>
           </div>);

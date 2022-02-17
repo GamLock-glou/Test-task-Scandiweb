@@ -21,7 +21,13 @@ class Gallery extends Component<ProductItemProps> {
                         return index < 3 ? <img onClick={() => onClickImg(index)} key={index} src={g} /> : null
                     })}
                     <div className="buttonShowGallery" onClick={onClickShowProduct}>
-                        {!isAllImg ? <div>More</div> : <div>Hide</div>}
+                        { 
+                            gallery.length > 3 
+                            ?
+                            !isAllImg ? <div>More</div> : <div>Hide</div>
+                            :
+                            null
+                        }
                     </div>
                 </div>
                 <div className="galleryMainImg"><img src={gallery[indexImg]} /></div>

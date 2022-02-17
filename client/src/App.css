@@ -1,3 +1,82 @@
+/* raleway-regular - latin */
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/raleway-v26-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('./fonts/raleway-v26-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('./fonts/raleway-v26-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('./fonts/raleway-v26-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('./fonts/raleway-v26-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('./fonts/raleway-v26-latin-regular.svg#Raleway') format('svg'); /* Legacy iOS */
+  }
+  /* raleway-500 - latin */
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./fonts/raleway-v26-latin-500.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('./fonts/raleway-v26-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('./fonts/raleway-v26-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+         url('./fonts/raleway-v26-latin-500.woff') format('woff'), /* Modern Browsers */
+         url('./fonts/raleway-v26-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('./fonts/raleway-v26-latin-500.svg#Raleway') format('svg'); /* Legacy iOS */
+  }
+  /* raleway-600 - latin */
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    src: url('./fonts/raleway-v26-latin-600.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('./fonts/raleway-v26-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('./fonts/raleway-v26-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+         url('./fonts/raleway-v26-latin-600.woff') format('woff'), /* Modern Browsers */
+         url('./fonts/raleway-v26-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('./fonts/raleway-v26-latin-600.svg#Raleway') format('svg'); /* Legacy iOS */
+  }
+  /* raleway-700 - latin */
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./fonts/raleway-v26-latin-700.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('./fonts/raleway-v26-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('./fonts/raleway-v26-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+         url('./fonts/raleway-v26-latin-700.woff') format('woff'), /* Modern Browsers */
+         url('./fonts/raleway-v26-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('./fonts/raleway-v26-latin-700.svg#Raleway') format('svg'); /* Legacy iOS */
+  }
+  /* raleway-800 - latin */
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 800;
+    src: url('./fonts/raleway-v26-latin-800.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('./fonts/raleway-v26-latin-800.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('./fonts/raleway-v26-latin-800.woff2') format('woff2'), /* Super Modern Browsers */
+         url('./fonts/raleway-v26-latin-800.woff') format('woff'), /* Modern Browsers */
+         url('./fonts/raleway-v26-latin-800.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('./fonts/raleway-v26-latin-800.svg#Raleway') format('svg'); /* Legacy iOS */
+  }
+  /* raleway-900 - latin */
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 900;
+    src: url('./fonts/raleway-v26-latin-900.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('./fonts/raleway-v26-latin-900.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('./fonts/raleway-v26-latin-900.woff2') format('woff2'), /* Super Modern Browsers */
+         url('./fonts/raleway-v26-latin-900.woff') format('woff'), /* Modern Browsers */
+         url('./fonts/raleway-v26-latin-900.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('./fonts/raleway-v26-latin-900.svg#Raleway') format('svg'); /* Legacy iOS */
+  }
+
 html{
     box-sizing: border-box;
 }
@@ -136,11 +215,33 @@ li {
     justify-content: center;
 }
 
+.productInCart {
+    position: absolute;
+    bottom: -5%;
+    left: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #5ECE7B;
+    width: 52px;
+    height: 52px;
+    border-radius: 100%;
+}
+
+.productInCartImg {
+    width: 35px;
+    height: 35px;
+}
+
 .productItems {
     margin-top: 20px;
     font-size: 18px;
     display: flex;
     flex-direction: column;
+}
+
+.productItems .price {
+    font-weight: 500;
 }
 
 .select {
@@ -290,4 +391,103 @@ li {
 .aboutTheProduct {
     display: flex;
     flex-direction: column;
+    margin-left: 4rem
 }
+
+.aboutTheProduct .attributesProduct {
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutTheProduct .attributeProduct {
+    margin-top: 15px;
+}
+
+.aboutTheProduct .attributeProduct:first-child {
+    margin-top: 0px;
+}
+
+.aboutTheProduct .attributeItemsProduct {
+    display: flex;
+    flex-direction: row;
+}
+
+.aboutTheProduct .attributeItemProduct {
+    border: 1px solid #1D1F22;
+    width: 80px;
+    height: 45px;
+    margin-right: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.aboutTheProduct .attributeItemProduct:hover {
+    background-color: #1D1F22;
+    color: #FFFFFF;
+    border: 1px solid #e4e4e4;
+}
+
+.aboutTheProduct .attributeItemProduct_active {
+    background-color: #1D1F22;
+    color: #FFFFFF;
+    border: 1px solid #e4e4e4;
+}
+
+.aboutTheProduct .attributeItemProduct:last-child {
+    margin-right: 0px;
+}
+
+.aboutTheProduct .brandProduct {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 27px;
+}
+
+.aboutTheProduct .nameProduct {
+    margin-top: 16px;
+    font-size: 30px;
+    line-height: 27px;
+}
+
+.aboutTheProduct .priceProduct {
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+.aboutTheProduct .button__addProduct {
+    margin-top: 20px;
+    padding: 16px 32px;
+    background: #5ECE7B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.aboutTheProduct .button__addProduct:hover {
+    background: #4d4d4d;
+}
+
+.aboutTheProduct .descriptionProduct {
+    margin-top: 40px;
+    font-size: 16px;
+    line-height: 159.96%;
+}
+
+.aboutTheProduct .attributesProduct {
+    margin-top: 40px;
+}
+
+.aboutTheProduct .attributeNameProduct {
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+

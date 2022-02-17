@@ -2,11 +2,13 @@ import { Query } from '@apollo/react-components';
 import React, { Component } from 'react';
 import { GET_ONE_PRODUCT } from "../../query/query";
 import { getPrice } from '../../util';
+import { AboutProduct } from './AboutProduct/AboutProduct';
 import Gallery from './Gallery/Gallery';
 
 interface ProductItemProps {
-    id: string,
+    id: Record<string, unknown>,
     currency: string,
+    setProductsCard: any
 }
 
 interface ProductItemState {
@@ -22,7 +24,7 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
     }
 
     render() {
-        const { id } = this.props;
+        const { id, currency, setProductsCard } = this.props;
         return (
             <Query query={GET_ONE_PRODUCT} variables={{ id: id }}>
                 {({ data, loading }) => {
@@ -33,13 +35,14 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
                         return <div style={{ display: "flex", justifyContent: "center", fontSize: "20px", color: "red" }}>Page not found</div>
 
                     const {
+                        id,
                         name,
                         gallery,
                         description,
-                        category,
+                        attributes,
                         prices,
                         brand } = data.product;
-
+                    const price = getPrice(prices, currency);
                     return <div className="wrapper">
                         <div className="productItem">
                             <Gallery 
@@ -49,13 +52,15 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
                                 onClickShowProduct={this.onClickShowProduct} 
                                 indexImg={this.state.indexImg}
                             />
-                            <div className="aboutTheProduct">
-                                <div>{brand}</div>
-                                <div>{name}</div>
-                                <div>{getPrice(prices, this.props.currency)}</div>
-                                <div>ADD TO CARD</div>
-                                <div dangerouslySetInnerHTML={{__html: description}} />
-                            </div>
+                            <AboutProduct 
+                                setProductsCard={setProductsCard}
+                                name={name}
+                                description={description}
+                                attributes={attributes}
+                                price={price}
+                                brand={brand}
+                                id={id}
+                            />
                         </div>
                     </div>
                 }}
@@ -65,6 +70,7 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
 
     onClickImg = (index) => {
         this.setState({indexImg: index})
+        this.setState({isAllImg: false})
     }
 
     onClickShowProduct = () => {

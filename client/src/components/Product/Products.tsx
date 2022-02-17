@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { ProductItem } from './ProductItem';
 import { ProductList } from "./ProductList"
 
 interface ProductsProps {
     currency: string;
-    categoryTitle: string;
-    pathName: string;
-    setPathName: any;
+    setProductsCard:any;
   }
+ 
 
 export class Products extends Component<ProductsProps> {
     render() {
-        const { currency, categoryTitle, setPathName, pathName } = this.props;
-        const id = pathName.split("/", 2)[1];
-        if(id)
-            return <ProductItem id={id} currency={currency}/>
+        const { currency, setProductsCard } = this.props;
+
         return (
-            <ProductList
-                categoryTitle={categoryTitle}
-                currency={currency}
-                setPathName={setPathName}
-            />
-        );
+            <div>
+                <Switch>
+                    <Route
+                        path="/:category/:id"
+                        render={({ match }) => (
+                            <ProductItem setProductsCard={setProductsCard} currency={currency} id={match.params.id} />
+                        )}
+                    />                    
+                    <Route
+                        path="/:category"
+                        render={({ match }) => (
+                            <ProductList currency={currency} categoryTitle={match.params.category} />
+                        )}
+                    />
+                    <Route
+                        exact path="/" render={()=> <Redirect to="/all" />}
+                    />
+                </Switch>
+            </div>
+        )
     }
 }

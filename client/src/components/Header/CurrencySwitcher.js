@@ -9,16 +9,6 @@ class CurrencySwitcher extends React.Component {
     isActive: false
   }
 
-  onClickItem(currency) {
-    this.props.setCurrency(currency.label);
-    this.setState({currency: currency.symbol})
-    this.setState({isActive: false})
-  }
-
-  onClickSelect=()=> {
-    this.setState({isActive: !this.state.isActive})
-  }
-
   render() {
     const classNameList = !this.state.isActive ? { display: "none" } : { display: "block" };
     const classNameSelect = !this.state.isActive ? "select__head" : "select__head__active";
@@ -53,6 +43,15 @@ class CurrencySwitcher extends React.Component {
       </Query>
     );
   }
+    onClickItem(currency) {
+      this.props.setCurrency(currency.label);
+      this.setState({currency: currency.symbol})
+      this.setState({isActive: false})
+    }
+  
+    onClickSelect=()=> {
+      this.setState({isActive: !this.state.isActive})
+    }
 }
 
 export default CurrencySwitcher;

@@ -4,6 +4,7 @@ interface ItemProductProps {
     value: string;
     index: number;
     defaultValue: string;
+    onClickAttribute:any;
 }
 
 export class ItemProduct extends Component<ItemProductProps> {
@@ -16,10 +17,15 @@ export class ItemProduct extends Component<ItemProductProps> {
             <div 
                 style={{ background: `${this.props.value}` }}  
                 className={className}
+                onClick={this.onClick}
             >
                 {this.props.value[0] !== "#" && this.props.value}
             </div>
 
         );
+    }
+
+    onClick = () => {
+        this.props.onClickAttribute(this.props.value)
     }
 }

@@ -14,14 +14,19 @@ class App extends React.Component<Record<string, never>, AppState> {
     currency: "USD",
     productsInCart: []
   };
-
+  // testing
+  // {
+  //   productId: "jacket-canada-goosee",
+  //   attributes: {"Size": "S"}
+  // },
   
 
   render() {
+    console.log(this.state.productsInCart)
     return (
       <div className="App">
         <div className="header">
-          {/* this can be component Header */}
+
           <Header
             setCurrency={this.setCurrency}
           />
@@ -39,10 +44,16 @@ class App extends React.Component<Record<string, never>, AppState> {
     );
   }
 
-  setProductsCart = (productId: string, attributes: []) => {
+  setProductsCart=(productId: string, attributes: {})=>{
     //shit
+    let seachId = this.state.productsInCart.findIndex((product) => product.productId == productId)
+    let productCount = this.state.productsInCart[seachId]?.productCount !== undefined 
+      ? this.state.productsInCart[seachId].productCount + 1 : 1;
+
+    let newProduct = { productId: productId, productCount: productCount, attributes: attributes }
+
     let filt = this.state.productsInCart.filter(productInCart => productInCart.productId !== productId)
-    filt.push({ productId: productId, attributes: attributes });
+    filt.push(newProduct);
     this.setState({ productsInCart: filt })
   }
 

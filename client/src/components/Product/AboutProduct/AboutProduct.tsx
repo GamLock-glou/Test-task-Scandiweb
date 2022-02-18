@@ -13,22 +13,47 @@ interface AboutProductItemProps {
     setProductsCard: any
 }
 
-export class AboutProduct extends Component<AboutProductItemProps> {
+interface AboutProductItemState {
+    attributes: any;
+    productId: string
+}
+
+function getAttributes(attributes: AttributeSet[]) {
+
+    return attributes.reduce((prev, now) => {
+        const attr = prev;
+        attr[now.id] = now.items[0].value;
+        return attr;
+    }, {});
+}
+
+
+export class AboutProduct extends Component<AboutProductItemProps, AboutProductItemState> {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            productId: this.props.id,
+            attributes: getAttributes(props.attributes)
+        }
+    }
 
     render() {
-
         const {
             name,
             description,
             attributes,
             price,
-            brand, id } = this.props;
-
+            brand } = this.props;
         return (
             <div className="aboutTheProduct">
                 <div className="brandProduct">{brand}</div>
                 <div className="nameProduct">{name}</div>
-                <Attributes attributes={attributes} />
+                <Attributes 
+                    attributes={attributes}
+                    defaultValue={this.state}
+                    onClickAttribute={this.onClickAttribute}
+                />
                 <div className="priceProduct">
                     <div>Price:</div>
                     <div>{price}</div>
@@ -37,7 +62,7 @@ export class AboutProduct extends Component<AboutProductItemProps> {
                     to="/all"
                     style={{ textDecoration: "none" }}
                 >
-                    <div className="button__addProduct">
+                    <div className="button__addProduct" onClick={this.onClick}>
                         ADD TO CARD
                     </div>
                 </NavLink>
@@ -45,4 +70,13 @@ export class AboutProduct extends Component<AboutProductItemProps> {
             </div>
         );
     }
+
+    onClickAttribute = (id, value) => {
+        this.setState({attributes: {...this.state.attributes, [id]: value }})
+    }
+
+    onClick = () => {
+        this.props.setProductsCard(this.props.id, this.state.attributes)
+    }
+
 }

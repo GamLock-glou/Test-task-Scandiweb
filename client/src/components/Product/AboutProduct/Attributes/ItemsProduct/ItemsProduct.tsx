@@ -6,6 +6,7 @@ interface ItemsProductProps {
     items: Attribute[];
     name: string;
     defaultValue: string;
+    onClickAttribute:any;
 }
 
 export class ItemsProduct extends Component<ItemsProductProps> {
@@ -19,6 +20,7 @@ export class ItemsProduct extends Component<ItemsProductProps> {
                             index={key} 
                             value={item.value}
                             defaultValue={this.props.defaultValue}
+                            onClickAttribute={this.props.onClickAttribute}
                         />
                     })}
                 </div>

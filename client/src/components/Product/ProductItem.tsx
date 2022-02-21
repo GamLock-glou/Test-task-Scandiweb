@@ -28,6 +28,7 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
         return (
             <Query query={GET_ONE_PRODUCT} variables={{ id: id }}>
                 {({ data, loading }) => {
+                    console.log(data);
                     if (loading)
                         return <div style={{ display: "flex", justifyContent: "center", fontSize: "20px" }}>Loading...</div>
 

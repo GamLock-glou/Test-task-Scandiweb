@@ -25,6 +25,7 @@ class App extends React.Component<Record<string, never>, AppState> {
 
 
   render() {
+    // console.log(this.state.productsInCart);
     return (
       <div className="App">
         <ProviderProductsInCart.Provider value={this.state.productsInCart}>
@@ -56,7 +57,7 @@ class App extends React.Component<Record<string, never>, AppState> {
   setProductsCart = (productId: string, attributes: {}) => {
     //shit
     let product = this.state.productsInCart.find((product) => product.productId == productId)
-    let count = product?.count ? product.count + 1 : 1;
+    let count = product ? product.productCount + 1 : 1;
     let newProduct = { productId: productId, productCount: count, attributes: attributes }
 
     let filt = this.state.productsInCart.filter(productInCart => productInCart.productId !== productId)

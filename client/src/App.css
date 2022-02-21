@@ -101,10 +101,12 @@ li {
 }
 
 .header {
-    /* position: fixed; */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 2;
+    background-color: #FFFFFF;
 }
 
 .wrapper {
@@ -113,11 +115,9 @@ li {
 }
 
 .header__wrapper {
-    max-height: 80px;
-    height: 80px;
+    margin-top: 35px;
     display: flex;
     flex-wrap: wrap;
-    /* align-items: flex-end; */
     align-items: center;
 }
 
@@ -129,6 +129,10 @@ li {
 .header__logo {
     margin-left: 390px;
     margin-right: 500px;
+}
+
+.test {
+    z-index: 2;
 }
 
 .header__item {
@@ -148,7 +152,7 @@ li {
 
 .header__link__active {
     color: #5ECE7B;
-    padding-bottom: 15px;
+    padding-bottom: 12px;
     border-bottom: 1.2px solid #5ECE7B;
 }
 
@@ -159,7 +163,7 @@ li {
 } 
 
 .body {
-    margin-top: 70px;
+    padding-top: 150px;
 }
 
 .body__header {
@@ -339,6 +343,35 @@ li {
     padding: 10px;
 }
 
+.bagInHead {
+    position: relative;
+    width: 29px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bagInHead > img {
+    width: 25px;
+    cursor: pointer;
+}
+
+.countProduct {
+    position: absolute;
+    color: #FFFFFF;
+    left: 15px;
+    bottom: 15px;
+    background: #1D1F22;
+    width: 20px;
+    height: 20px;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 16px;
+}
+
 .galleryImgList {
     display: flex;
     flex-direction: column;
@@ -491,3 +524,38 @@ li {
 }
 
 
+.headerBag > h1 {
+
+    font-style: normal;
+    font-weight: bold;
+}
+
+.headerBag {
+    display: flex;
+    font-size: 16px;
+    line-height: 160%;
+}
+
+.buttonsBag {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.buttonsBag > div {
+    width: 140px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1D1F22;
+    border: 1px solid #1D1F22;
+    cursor: pointer;
+
+}
+
+.buttonsBag > .buttonCheckOut {
+    color: #FFFFFF;
+    border: 1px solid #5ECE7B;
+    background: #5ECE7B;
+}

@@ -10,12 +10,12 @@ interface ItemProductProps {
 export class ItemProduct extends Component<ItemProductProps> {
 
     render() {
-        const className = this.props.defaultValue === this.props.value ? 
+        const className = this.props.defaultValue === this.props.value ?
         "attributeItemProduct attributeItemProduct_active" : "attributeItemProduct";
         return (
             // shit code
-            <div 
-                style={{ background: `${this.props.value}` }}  
+            <div
+                style={{ background: `${this.props.value}` }}
                 className={className}
                 onClick={this.onClick}
             >

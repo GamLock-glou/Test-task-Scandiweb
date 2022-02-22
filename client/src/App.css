@@ -92,6 +92,11 @@ li {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 *, *::before, *::after {
@@ -638,7 +643,7 @@ li {
 .itemCart_active {
     background: #1D1F22;
     color: #FFFFFF;
-    border: none;
+    border: 1px solid #e4e4e4;
 }
 
 .leftCart {

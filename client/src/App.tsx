@@ -24,6 +24,18 @@ class App extends React.Component<Record<string, never>, AppState> {
   //   attributes: {"Size": "S"}
   // },
 
+  componentDidMount() {
+    const cart = localStorage.getItem('cart')
+    if(cart) {
+      const products = JSON.parse(cart) as any;
+      this.setState({productsInCart: products})
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.productsInCart !== this.state.productsInCart)
+      localStorage.setItem('cart', JSON.stringify(this.state.productsInCart))
+  }
 
   render() {
     return (

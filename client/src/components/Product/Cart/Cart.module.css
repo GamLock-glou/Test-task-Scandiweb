@@ -97,7 +97,7 @@
 }
 
 .leftGallery:hover {
-    color: #1D1F22; 
+    color: #1D1F22;
     cursor: pointer;
 }
 
@@ -110,7 +110,7 @@
 }
 
 .rightGallery:hover {
-    color: #1D1F22; 
+    color: #1D1F22;
     cursor: pointer;
 }
 
@@ -154,13 +154,13 @@
 .itemCart:hover {
     color:#FFFFFF;
     background-color: #1D1F22;
-    border: none;
+    border: 1px solid #e4e4e4;
 }
 
 .itemCart_active {
     color:#FFFFFF;
     background-color: #1D1F22;
-    border: none;
+    border: 1px solid #e4e4e4;
 }
 
 .cart {

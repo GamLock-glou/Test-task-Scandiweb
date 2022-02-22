@@ -3,6 +3,7 @@ import React from "react";
 import { Header } from "./components/Header/Header";
 import { Products } from "./components/Product/Products";
 import { ProviderProductsInCart } from "./components/Providers/Provider"
+import { Price } from "./types";
 
 interface AppState {
   currency: string;
@@ -25,7 +26,6 @@ class App extends React.Component<Record<string, never>, AppState> {
 
 
   render() {
-    // console.log(this.state.productsInCart);
     return (
       <div className="App">
         <ProviderProductsInCart.Provider value={this.state.productsInCart}>
@@ -40,9 +40,11 @@ class App extends React.Component<Record<string, never>, AppState> {
             {/* this can be component Body */}
             <Products
               currency={this.state.currency}
-              setProductsCard={this.setProductsCart}
+              setProductsCart={this.setProductsCart}
               setVisible={this.onClick}
               visible={this.state.visible}
+              addProductCount={this.addProductCount}
+              changeAttribute={this.changeAttribute}
             />
           </div>
         </ProviderProductsInCart.Provider>
@@ -54,11 +56,41 @@ class App extends React.Component<Record<string, never>, AppState> {
     this.setState({visible: visible});
   }
 
-  setProductsCart = (productId: string, attributes: {}) => {
+  changeAttribute = (id, attributeIndex, attributeValue) => {
+    const newProducts = [...this.state.productsInCart];
+    const index = newProducts.findIndex( ({productId}) => productId === id );
+    if(newProducts[index]) {
+      newProducts[index] = {
+        ...newProducts[index],
+        attributes: {...newProducts[index].attributes,
+        [attributeIndex]: attributeValue}
+      }
+      this.setState({productsInCart: newProducts});
+    }
+  }
+
+  addProductCount = (id:string, count:number = 1) => {
+    const newProducts = [...this.state.productsInCart];
+    const index = newProducts.findIndex( ({productId}) => productId === id );
+    if(newProducts[index])
+    {
+      if(newProducts[index].productCount + count > 0)
+      {
+        newProducts[index] = {...newProducts[index], productCount: newProducts[index].productCount + count}
+        this.setState({productsInCart: newProducts});
+      }
+      else {
+        const filt = newProducts.filter((product, indexProduct) => indexProduct !== index)
+        this.setState({productsInCart: filt});
+      }
+    }
+  }
+
+  setProductsCart = (productId: string, attributes: {}, prices: Price[]) => {
     //shit
     let product = this.state.productsInCart.find((product) => product.productId == productId)
     let count = product ? product.productCount + 1 : 1;
-    let newProduct = { productId: productId, productCount: count, attributes: attributes }
+    let newProduct = { productId: productId, productCount: count, attributes: attributes, prices: prices }
 
     let filt = this.state.productsInCart.filter(productInCart => productInCart.productId !== productId)
     filt.push(newProduct);

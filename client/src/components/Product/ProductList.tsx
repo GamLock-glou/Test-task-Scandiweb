@@ -6,22 +6,22 @@ import Product from "./Product";
 interface ProductListProps {
   currency: string;
   categoryTitle: Record<string, unknown>;
-  
+
 }
 
 export class ProductList extends React.Component<ProductListProps> {
-  
+
   render() {
     const { currency, categoryTitle } = this.props;
     return (
-      <Query query={GET_ONE_CATEGORY} variables={{input: { title: categoryTitle }}}>
+      <Query query={GET_ONE_CATEGORY} variables={{ input: { title: categoryTitle } }}>
         {({ data, loading }) => {
 
-          if(loading) 
-            return <div style={{display:"flex", justifyContent: "center", fontSize: "20px"}}>Loading...</div>
+          if (loading)
+            return <div style={{ display: "flex", justifyContent: "center", fontSize: "20px" }}>Loading...</div>
 
-          if(!data.category)
-            return <div style={{display:"flex", justifyContent: "center", fontSize: "20px", color: "red"}}>Page not found</div>
+          if (!data.category)
+            return <div style={{ display: "flex", justifyContent: "center", fontSize: "20px", color: "red" }}>Page not found</div>
 
           const { name, products } = data.category
 
@@ -31,10 +31,10 @@ export class ProductList extends React.Component<ProductListProps> {
               <h1>{name}</h1>
             </div>
             <div className="productList">
-              
-                  {products.map((product, key) => (
-                    <Product key={key} currency={currency} product={product} categoryTitle={categoryTitle} />
-                  ))}
+
+              {products.map((product, key) => (
+                <Product key={key} currency={currency} product={product} categoryTitle={categoryTitle} />
+              ))}
             </div>
           </div>);
         }}

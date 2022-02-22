@@ -536,6 +536,17 @@ li {
     line-height: 160%;
 }
 
+.totalBag {
+    width: 90%;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 95px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
 .buttonsBag {
     display: flex;
     flex-wrap: wrap;
@@ -545,7 +556,7 @@ li {
     margin-bottom: 20px;
 }
 
-.buttonsBag > div {
+.buttonsBag > div, .buttonViewBag {
     width: 140px;
     height: 43px;
     display: flex;
@@ -557,6 +568,12 @@ li {
 }
 
 .buttonsBag > div:hover {
+    background-color: #1D1F22;
+    color: #FFFFFF;
+    border: none;
+}
+
+.buttonViewBag:hover {
     background-color: #1D1F22;
     color: #FFFFFF;
     border: none;
@@ -621,16 +638,20 @@ li {
 .itemCart_active {
     background: #1D1F22;
     color: #FFFFFF;
-    border: 1px solid #e4e4e4;
+    border: none;
 }
 
 .leftCart {
     width: 136px;
     margin-right: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .rightCart {
     display: flex;
+    align-self:center;
 }
 
 .rightCart > img {
@@ -648,7 +669,7 @@ li {
 
 }
 
-.buttonsCountProduct > .buttonCountProduct {
+.buttonCountProduct {
     height: 24px;
     width: 24px;
     border: 1px solid #1D1F22;
@@ -657,6 +678,12 @@ li {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap-reverse;
+    cursor: pointer;
+}
+
+.buttonCountProduct:hover {
+    color: #FFFFFF;
+    background-color: #1D1F22;
 }
 
 .countProducts {

@@ -4,7 +4,6 @@ import { Product as ProductType } from "../../types";
 import { getPrice } from "../../util";
 import { ProviderProductsInCart } from "../Providers/Provider";
 import CartWhite from '../../pictures/Cart_White.png';
-import { AttributeProductInCart } from "./MyBag/AttributeProductInCart";
 
 interface PropductProps {
   currency: string;

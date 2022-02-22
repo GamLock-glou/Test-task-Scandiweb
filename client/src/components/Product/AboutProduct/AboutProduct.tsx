@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { AttributeSet } from '../../../types';
+import { AttributeSet, Price } from '../../../types';
 import { Attributes } from './Attributes/Attributes';
 import { NavLink } from "react-router-dom";
+import { getPrice } from '../../../util';
 
 interface AboutProductItemProps {
     name: string;
     description: string;
     attributes: AttributeSet[];
-    price: string;
+    prices: Price[];
     brand: string;
     id: string;
     setProductsCard: any
+    currency:string
 }
 
 interface AboutProductItemState {
@@ -43,8 +45,10 @@ export class AboutProduct extends Component<AboutProductItemProps, AboutProductI
             name,
             description,
             attributes,
-            price,
-            brand } = this.props;
+            prices,
+            brand,
+            currency } = this.props;
+        const price = getPrice(prices, currency);
         return (
             <div className="aboutTheProduct">
                 <div className="brandProduct">{brand}</div>
@@ -61,8 +65,9 @@ export class AboutProduct extends Component<AboutProductItemProps, AboutProductI
                 <NavLink
                     to="/all"
                     style={{ textDecoration: "none" }}
+                    onClick={this.onClick}
                 >
-                    <div className="button__addProduct" onClick={this.onClick}>
+                    <div className="button__addProduct">
                         ADD TO CARD
                     </div>
                 </NavLink>
@@ -76,7 +81,7 @@ export class AboutProduct extends Component<AboutProductItemProps, AboutProductI
     }
 
     onClick = () => {
-        this.props.setProductsCard(this.props.id, this.state.attributes)
+        this.props.setProductsCard(this.props.id, this.state.attributes, this.props.prices)
     }
 
 }

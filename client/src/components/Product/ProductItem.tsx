@@ -26,9 +26,8 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
     render() {
         const { id, currency, setProductsCard } = this.props;
         return (
-            <Query query={GET_ONE_PRODUCT} variables={{ id: id }}>
+            <Query fetchPolicy='no-cache' query={GET_ONE_PRODUCT} variables={{ id: id }}>
                 {({ data, loading }) => {
-                    console.log(data);
                     if (loading)
                         return <div style={{ display: "flex", justifyContent: "center", fontSize: "20px" }}>Loading...</div>
 
@@ -43,7 +42,6 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
                         attributes,
                         prices,
                         brand } = data.product;
-                    const price = getPrice(prices, currency);
                     return <div className="wrapper">
                         <div className="productItem">
                             <Gallery 
@@ -58,9 +56,10 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
                                 name={name}
                                 description={description}
                                 attributes={attributes}
-                                price={price}
+                                prices={prices}
                                 brand={brand}
                                 id={id}
+                                currency={currency}
                             />
                         </div>
                     </div>

@@ -2,21 +2,24 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ProductItem } from './ProductItem';
 import { ProductList } from "./ProductList"
-import {Model} from "../UI/Model"
+import { Model } from "../UI/Model"
 import { BagItems } from './MyBag/BagItems';
+import { Cart } from './Cart/Cart';
 
 interface ProductsProps {
     currency: string;
-    setProductsCard:any;
+    setProductsCart: any;
     setVisible: any;
     visible: boolean
-  }
- 
+    addProductCount: any
+    changeAttribute:any
+}
+
 
 export class Products extends Component<ProductsProps> {
 
     render() {
-        const { currency, setProductsCard, setVisible, visible } = this.props;
+        const { currency, changeAttribute,setProductsCart: setProductsCard, setVisible, visible, addProductCount } = this.props;
 
         return (
             <div>
@@ -26,7 +29,15 @@ export class Products extends Component<ProductsProps> {
                         render={({ match }) => (
                             <ProductItem setProductsCard={setProductsCard} currency={currency} id={match.params.id} />
                         )}
-                    />                    
+                    />
+                    <Route
+                        exact path="/cart"
+                        render={() => <Cart 
+                            currency={currency} 
+                            addProductCount={addProductCount}
+                            changeAttribute={changeAttribute}
+                        />}
+                    />
                     <Route
                         path="/:category"
                         render={({ match }) => (
@@ -34,11 +45,11 @@ export class Products extends Component<ProductsProps> {
                         )}
                     />
                     <Route
-                        exact path="/" render={()=> <Redirect to="/all" />}
+                        exact path="/" render={() => <Redirect to="/all" />}
                     />
                 </Switch>
                 <Model visible={visible} setVisible={setVisible}>
-                    <BagItems currency={currency} />
+                    <BagItems addProductCount={addProductCount} setVisible={setVisible} currency={currency} />
                 </Model>
             </div>
         )

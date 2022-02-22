@@ -18,22 +18,16 @@ class App extends React.Component<Record<string, never>, AppState> {
     visible: false,
   };
 
-  // testing
-  // {
-  //   productId: "jacket-canada-goosee",
-  //   attributes: {"Size": "S"}
-  // },
-
   componentDidMount() {
     const cart = localStorage.getItem('cart')
-    if(cart) {
+    if (cart) {
       const products = JSON.parse(cart) as any;
-      this.setState({productsInCart: products})
+      this.setState({ productsInCart: products })
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if(prevState.productsInCart !== this.state.productsInCart)
+  componentDidUpdate(_, prevState) {
+    if (prevState.productsInCart !== this.state.productsInCart)
       localStorage.setItem('cart', JSON.stringify(this.state.productsInCart))
   }
 
@@ -41,13 +35,12 @@ class App extends React.Component<Record<string, never>, AppState> {
     return (
       <div className="App">
         <ProviderProductsInCart.Provider value={this.state.productsInCart}>
-          <div className="header">
-            <Header
-              setCurrency={this.setCurrency}
-              setVisible={this.onClick}
-              visible={this.state.visible}
-            />
-          </div>
+
+          <Header
+            setCurrency={this.setCurrency}
+            setVisible={this.onClick}
+            visible={this.state.visible}
+          />
           <div className="body">
             {/* this can be component Body */}
             <Products
@@ -65,35 +58,35 @@ class App extends React.Component<Record<string, never>, AppState> {
   }
 
   onClick = (visible) => {
-    this.setState({visible: visible});
+    this.setState({ visible: visible });
   }
 
   changeAttribute = (id, attributeIndex, attributeValue) => {
     const newProducts = [...this.state.productsInCart];
-    const index = newProducts.findIndex( ({productId}) => productId === id );
-    if(newProducts[index]) {
+    const index = newProducts.findIndex(({ productId }) => productId === id);
+    if (newProducts[index]) {
       newProducts[index] = {
         ...newProducts[index],
-        attributes: {...newProducts[index].attributes,
-        [attributeIndex]: attributeValue}
+        attributes: {
+          ...newProducts[index].attributes,
+          [attributeIndex]: attributeValue
+        }
       }
-      this.setState({productsInCart: newProducts});
+      this.setState({ productsInCart: newProducts });
     }
   }
 
-  addProductCount = (id:string, count:number = 1) => {
+  addProductCount = (id: string, count: number = 1) => {
     const newProducts = [...this.state.productsInCart];
-    const index = newProducts.findIndex( ({productId}) => productId === id );
-    if(newProducts[index])
-    {
-      if(newProducts[index].productCount + count > 0)
-      {
-        newProducts[index] = {...newProducts[index], productCount: newProducts[index].productCount + count}
-        this.setState({productsInCart: newProducts});
+    const index = newProducts.findIndex(({ productId }) => productId === id);
+    if (newProducts[index]) {
+      if (newProducts[index].productCount + count > 0) {
+        newProducts[index] = { ...newProducts[index], productCount: newProducts[index].productCount + count }
+        this.setState({ productsInCart: newProducts });
       }
       else {
         const filt = newProducts.filter((product, indexProduct) => indexProduct !== index)
-        this.setState({productsInCart: filt});
+        this.setState({ productsInCart: filt });
       }
     }
   }

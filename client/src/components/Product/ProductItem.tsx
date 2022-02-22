@@ -1,12 +1,11 @@
 import { Query } from '@apollo/react-components';
 import React, { Component } from 'react';
 import { GET_ONE_PRODUCT } from "../../query/query";
-import { getPrice } from '../../util';
 import { AboutProduct } from './AboutProduct/AboutProduct';
 import Gallery from './Gallery/Gallery';
 
 interface ProductItemProps {
-    id: Record<string, unknown>,
+    id: string | null,
     currency: string,
     setProductsCard: any
 }

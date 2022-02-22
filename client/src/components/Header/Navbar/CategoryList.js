@@ -33,7 +33,6 @@ export class CategoryList extends React.Component {
                 ))}
               </ul>
             </div>
-          
           );
         }}
       </Query>

@@ -11,10 +11,12 @@ export class MyBag extends Component {
                     <img src={Cart}/>
                     <ProviderProductsInCart.Consumer>
                         {
-                            productsInCart=> {
-                                return !productsInCart.length 
-                                ? null 
-                                : <div className='countProduct'>{productsInCart.length > 3 ? "..." : productsInCart.length}</div>
+                            // myBagCount
+                            ({length})=> {
+                                const productLength = length > 9 ? "..." : length
+                                if(!length)
+                                    return null
+                                return <div className='countProduct'>{productLength}</div>
                             }
                         }
                     </ProviderProductsInCart.Consumer>

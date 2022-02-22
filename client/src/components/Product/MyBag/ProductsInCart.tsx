@@ -9,10 +9,6 @@ interface ProductsInCartProps {
 }
 
 class ProductsInCart extends Component<ProductsInCartProps> {
-
-    state={
-        total: 0
-    }
     
     render() {
         const {productsInCart, currency, addProductCount} = this.props;

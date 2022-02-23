@@ -37,16 +37,13 @@ class Product extends React.Component<PropductProps> {
                 const isProductInCart = productsInCart.find((p) => {return p.productId === id ? true : false });
                 if(isProductInCart)
                   return <div className="productInCart">
-                  <img 
+                  <img
                     src={CartWhite}
                     className="productInCartImg"
                   /></div>
-                  
               }}
           </ProviderProductsInCart.Consumer>
           </div>
-          
-          
           <div className="productItems">
             <div style={style}>{name}</div>
             <div style={style} className="price">{getPrice(prices, currency)}</div>

@@ -1,29 +1,36 @@
-import { Query } from "@apollo/react-components";
-import React from "react";
-import { GET_ONE_CATEGORY } from "../../query/query";
-import Product from "./Product";
+import {Query} from '@apollo/react-components';
+import React from 'react';
+import {GET_ONE_CATEGORY} from '../../query/query';
+import Product from './Product';
+import PageNotFound from '../UI/PageNotFound';
+import Loading from '../UI/Loading';
+
 
 interface ProductListProps {
   currency: string;
   categoryTitle: Record<string, unknown>;
-
+  setProductsCart: any;
 }
 
 export class ProductList extends React.Component<ProductListProps> {
-
   render() {
-    const { currency, categoryTitle } = this.props;
+    const {currency, categoryTitle, setProductsCart} = this.props;
     return (
-      <Query query={GET_ONE_CATEGORY} variables={{ input: { title: categoryTitle } }}>
-        {({ data, loading }) => {
+      <Query
+        query={GET_ONE_CATEGORY}
+        fetchPolicy='no-cache'
+        variables={{input: {title: categoryTitle}}}
+      >
+        {({data, loading}) => {
+          if (loading) {
+            return <Loading />;
+          }
 
-          if (loading)
-            return <div style={{ display: "flex", justifyContent: "center", fontSize: "20px" }}>Loading...</div>
+          if (!data.category) {
+            return <PageNotFound />;
+          }
 
-          if (!data.category)
-            return <div style={{ display: "flex", justifyContent: "center", fontSize: "20px", color: "red" }}>Page not found</div>
-
-          const { name, products } = data.category
+          const {name, products} = data.category;
 
           return (<div className="wrapper">
 
@@ -33,7 +40,13 @@ export class ProductList extends React.Component<ProductListProps> {
             <div className="productList">
 
               {products.map((product, key) => (
-                <Product key={key} currency={currency} product={product} categoryTitle={categoryTitle} />
+                <Product
+                  key={key}
+                  currency={currency}
+                  product={product}
+                  categoryTitle={categoryTitle}
+                  setProductsCart={setProductsCart}
+                />
               ))}
             </div>
           </div>);

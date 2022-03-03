@@ -1,57 +1,54 @@
-import { Query } from "@apollo/react-components";
-import React from "react";
-import { GET_ALL_CURRENCIES } from "../../query/query";
+import {Query} from '@apollo/react-components';
+import React from 'react';
+import {GET_ALL_CURRENCIES} from '../../query/query';
 
 class CurrencySwitcher extends React.Component {
-
   state={
-    currency: "$",
-    isActive: false
-  }
+    currency: '$',
+    isActive: false,
+  };
 
   render() {
-    const classNameList = !this.state.isActive ? { display: "none" } : { display: "block" };
-    const classNameSelect = !this.state.isActive ? "select__head" : "select__head__active";
+    const classNameList = this.props.isCurrencySwicherActive && 'select__list_active';
+    const classNameSelect = !this.props.isCurrencySwicherActive ? 'select__head' : 'select__head__active';
     return (
       <Query query={GET_ALL_CURRENCIES}>
-        {({ data }) => {
+        {({data}) => {
           if (!data) return null;
 
-          const { currencies } = data;
+          const {currencies} = data;
 
           return (
             <div className="select">
-              <div 
+              <div
                 className={classNameSelect}
-           
                 onClick={this.onClickSelect}
               >
                 {this.state.currency}
               </div>
-              <ul className="select__list" style={classNameList}>
+              <ul className={`select__list ${classNameList}`}>
                 {
                   currencies.map((currency, key) => {
                     return <li onClick={() => this.onClickItem(currency)} key={key}>
                       {currency.symbol} {currency.label}
-                    </li>
+                    </li>;
                   })
                 }
               </ul>
             </div>
-          )
+          );
         }}
       </Query>
     );
   }
-    onClickItem(currency) {
-      this.props.setCurrency(currency.label);
-      this.setState({currency: currency.symbol})
-      this.setState({isActive: false})
-    }
-  
-    onClickSelect=()=> {
-      this.setState({isActive: !this.state.isActive})
-    }
+  onClickItem = (currency) => {
+    this.setState({currency: currency.symbol});
+    this.props.onClickCurrencySwitcher(false, currency.label);
+  };
+
+  onClickSelect=(currency)=> {
+    this.props.onClickCurrencySwitcher(!this.props.isCurrencySwicherActive);
+  };
 }
 
 export default CurrencySwitcher;

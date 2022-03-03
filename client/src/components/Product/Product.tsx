@@ -1,56 +1,81 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { Product as ProductType } from "../../types";
-import { getPrice } from "../../util";
-import { ProviderProductsInCart } from "../Providers/Provider";
+import React from 'react';
+import {NavLink} from 'react-router-dom';
+import {Price, Product as ProductType} from '../../types';
+import {getPrice, getAttributes} from '../../util';
 import CartWhite from '../../pictures/Cart_White.png';
+import cn from 'classnames/bind';
 
 interface PropductProps {
   currency: string;
   product: ProductType;
-  categoryTitle: Record<string, unknown>
+  categoryTitle: Record<string, unknown>;
+  setProductsCart: any;
 }
 
 class Product extends React.Component<PropductProps> {
-
+  state={
+    isHover: false,
+    attributesProduct: getAttributes(this.props.product.attributes),
+  };
 
   render() {
     const {
       currency,
-      product: { name, gallery, inStock, prices, id, category } } = this.props;
-    const style = !inStock ? { color: "#8D8F9A" } : { color: "#1d1f22" };
+      product: {name, gallery, inStock, prices, id, category, brand}} = this.props;
+    const className = !inStock ? 'priceOfStock' : '';
     return (
-      <NavLink
-        to={`/${category}/${id}`}
-        style={{ textDecoration: "none" }}
+      <div
+        className='containerProduct'
+        onMouseEnter={()=>{
+          this.setState({isHover: true});
+        }}
+        onMouseLeave={()=>{
+          this.setState({isHover: false});
+        }}
       >
-        <div className="product" >
-          <div className="container">
-            <img
-              alt="Product"
-              className="productImg"
-              src={gallery[0]}
-            />
-            {!inStock ? <div className="text_block">OUT OF STOCK</div> : null}
-          <ProviderProductsInCart.Consumer>
-            {productsInCart => {
-                const isProductInCart = productsInCart.find((p) => {return p.productId === id ? true : false });
-                if(isProductInCart)
-                  return <div className="productInCart">
-                  <img
-                    src={CartWhite}
-                    className="productInCartImg"
-                  /></div>
-              }}
-          </ProviderProductsInCart.Consumer>
+        <NavLink
+          to={`/${category}/${id}`}
+        >
+          <div
+            className="product"
+          >
+            <div className="container">
+              <img
+                alt="Product"
+                className="productImg"
+                src={gallery[0]}
+              />
+              {!inStock ?
+            <div className="text_block">
+              OUT OF STOCK
+            </div> :
+            null}
+            </div>
+            <div className="productItems">
+              <div className={className} >{brand} {name}</div>
+              <div className={`price ${className}`}>{getPrice(prices, currency)}</div>
+            </div>
           </div>
-          <div className="productItems">
-            <div style={style}>{name}</div>
-            <div style={style} className="price">{getPrice(prices, currency)}</div>
-          </div>
+        </NavLink>
+        <div
+          className={cn('productInCart', {'productInCart productInCart_active': this.state.isHover})}
+          onClick={()=> {
+            this.onClick(id, this.state.attributesProduct, prices, inStock);
+          }}
+        >
+          <img
+            src={CartWhite}
+            className="productInCartImg"
+          />
         </div>
-      </NavLink>
+      </div>
     );
+  }
+
+  onClick(id: string, attributesProduct: {}, price: Price[], inStock) {
+    if (inStock) {
+      this.props.setProductsCart(id, attributesProduct, price);
+    }
   }
 }
 

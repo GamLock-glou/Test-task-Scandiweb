@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { CartProduct } from './CartProduct';
+import React, {Component} from 'react';
+import {CartProduct} from './CartProduct';
 import s from './Cart.module.css';
 
 
@@ -11,23 +11,23 @@ interface CartProductsProps {
 }
 
 export class CartProducts extends Component<CartProductsProps> {
-    render() {
-        const { productsCart, currency, addProductCount, changeAttribute } = this.props;
+  render() {
+    const {productsCart, currency, addProductCount, changeAttribute} = this.props;
 
-        return (
-            <div className={s.cart}>
-                {productsCart.map((productCart, key) => {
-                    return <div key={key}>
-                        <hr className={s.lineCart}/>
-                        <CartProduct 
-                            addProductCount={addProductCount} 
-                            currency={currency} 
-                            productCart={productCart} 
-                            changeAttribute={changeAttribute}
-                        />
-                    </div>
-                })}
-            </div>
-        );
-    }
+    return (
+      <div className={s.cart}>
+        {productsCart.map((productCart, key) => {
+          return <div key={key}>
+            <hr className={s.lineCart}/>
+            <CartProduct
+              addProductCount={addProductCount}
+              currency={currency}
+              productCart={productCart}
+              changeAttribute={changeAttribute}
+            />
+          </div>;
+        })}
+      </div>
+    );
+  }
 }

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { ProductInCart } from './ProductInCart';
+import React, {Component} from 'react';
+import {ProductInCart} from './ProductInCart';
 
 
 interface ProductsInCartProps {
@@ -9,25 +9,24 @@ interface ProductsInCartProps {
 }
 
 class ProductsInCart extends Component<ProductsInCartProps> {
-    
-    render() {
-        const {productsInCart, currency, addProductCount} = this.props;
-        return (
-            <div className='productCart'>
-                {
-                    productsInCart.map((product, key) => { 
-                        return <ProductInCart
-                            key={key} 
-                            product={product} 
-                            currency={currency} 
-                            addProductCount={addProductCount}
-                        />
-                    })
-                }
+  render() {
+    const {productsInCart, currency, addProductCount} = this.props;
+    return (
+      <div className='productCart'>
+        {
+          productsInCart.map((product, key) => {
+            return <ProductInCart
+              key={key}
+              product={product}
+              currency={currency}
+              addProductCount={addProductCount}
+            />;
+          })
+        }
 
-            </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 
 export default ProductsInCart;

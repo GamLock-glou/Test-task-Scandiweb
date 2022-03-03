@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import {gql} from '@apollo/client';
 
 export const GET_ALL_CURRENCIES = gql`
   query{
@@ -6,12 +6,12 @@ export const GET_ALL_CURRENCIES = gql`
       label, symbol
     }
   }
-`
+`;
 
 export const GET_ALL_CATEGORIES = gql`
 query{
     categories {
-      name  
+      name
     }
   }
 `;
@@ -20,10 +20,16 @@ export const GET_ONE_CATEGORY = gql`
 query Category($input: CategoryInput) {
   category(input: $input) {
     name, products {
-      id, 
-      name, 
+      id,
+      name,
       inStock,
       gallery,
+      attributes {
+        id,
+        items {
+          value
+        }
+      }
       category,
       prices {
         currency {
@@ -35,7 +41,7 @@ query Category($input: CategoryInput) {
     }
   }
 }
-`
+`;
 
 export const GET_ONE_PRODUCT = gql`
 query Product($id: String!) {
@@ -63,4 +69,4 @@ query Product($id: String!) {
     brand
   }
 }
-`
+`;

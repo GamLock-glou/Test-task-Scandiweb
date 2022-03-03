@@ -1,25 +1,25 @@
-import { Query } from "@apollo/react-components";
-import React from "react";
-import { GET_ALL_CATEGORIES } from "../../../query/query";
-import { Category } from "./Category";
+import {Query} from '@apollo/react-components';
+import React from 'react';
+import {GET_ALL_CATEGORIES} from '../../../query/query';
+import {Category} from './Category';
 
 export class CategoryList extends React.Component {
-  currentCategory = !window.location.pathname.substr(1) 
-    ? "all"
-    : window.location.pathname.substr(1)
+  currentCategory = !window.location.pathname.substr(1) ?
+    'all' :
+    window.location.pathname.substr(1);
   state={
-    currentCategory: this.currentCategory
-  }
+    currentCategory: this.currentCategory,
+  };
 
-    render() {
+  render() {
     return (
       <Query query={GET_ALL_CATEGORIES} >
         {({data, loading}) => {
+          if (loading) {
+            return null;
+          }
 
-          if(loading)
-            return null
-
-          const { categories } = data;
+          const {categories} = data;
           return (
             <div className="header__nav">
               <ul className="header__list">
@@ -42,5 +42,4 @@ export class CategoryList extends React.Component {
   onClick = (name) => {
     this.setState({currentCategory: name});
   };
-
 }

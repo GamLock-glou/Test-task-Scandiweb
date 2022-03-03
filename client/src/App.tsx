@@ -20,19 +20,19 @@ class App extends React.Component<Record<string, never>, AppState> {
     isCurrencySwicherActive: false,
   };
 
-  // componentDidMount() {
-  //   const cart = localStorage.getItem('cart');
-  //   if (cart) {
-  //     const products = JSON.parse(cart) as any;
-  //     this.setState({productsInCart: products});
-  //   }
-  // }
+  componentDidMount() {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      const products = JSON.parse(cart) as any;
+      this.setState({productsInCart: products});
+    }
+  }
 
-  // componentDidUpdate(_, prevState) {
-  //   if (prevState.productsInCart !== this.state.productsInCart) {
-  //     localStorage.setItem('cart', JSON.stringify(this.state.productsInCart));
-  //   }
-  // }
+  componentDidUpdate(_, prevState) {
+    if (prevState.productsInCart !== this.state.productsInCart) {
+      localStorage.setItem('cart', JSON.stringify(this.state.productsInCart));
+    }
+  }
 
   render() {
     return (

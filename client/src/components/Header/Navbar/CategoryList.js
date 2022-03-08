@@ -18,7 +18,6 @@ export class CategoryList extends React.Component {
           if (loading || !data) {
             return null;
           }
-          console.log(data);
           const {categories} = data;
           return (
             <div className="header__nav">

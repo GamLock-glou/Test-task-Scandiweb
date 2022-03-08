@@ -15,10 +15,10 @@ export class CategoryList extends React.Component {
     return (
       <Query query={GET_ALL_CATEGORIES} >
         {({data, loading}) => {
-          if (loading) {
+          if (loading || !data) {
             return null;
           }
-
+          console.log(data);
           const {categories} = data;
           return (
             <div className="header__nav">

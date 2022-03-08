@@ -22,7 +22,7 @@ export class ProductList extends React.Component<ProductListProps> {
         variables={{input: {title: categoryTitle}}}
       >
         {({data, loading}) => {
-          if (loading) {
+          if (loading || !data) {
             return <Loading />;
           }
 

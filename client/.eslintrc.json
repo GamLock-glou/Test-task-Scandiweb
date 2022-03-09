@@ -7,7 +7,7 @@
         "plugin:react/recommended",
         "google"
     ],
-    "parser": "@typescript-eslint/parser",
+    "parser": "@babel/eslint-parser",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true

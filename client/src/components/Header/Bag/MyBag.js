@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Cart from '../../../pictures/Cart.png';
 import {ProviderProductsInCart} from '../../Providers/Provider';
+import {getProductsCount} from '../../../util';
 
 export class MyBag extends Component {
   render() {
@@ -11,12 +12,12 @@ export class MyBag extends Component {
           <ProviderProductsInCart.Consumer>
             {
               // myBagCount
-              ({length})=> {
-                const productLength = length > 9 ? '...' : length;
-                if (!length) {
+              (products)=> {
+                const count = getProductsCount(products);
+                if (!count) {
                   return null;
                 };
-                return <div className='countProduct'>{productLength}</div>;
+                return <div className='countProduct'>{count}</div>;
               }
             }
           </ProviderProductsInCart.Consumer>

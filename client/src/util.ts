@@ -32,3 +32,9 @@ export function getAttributes(attributes: AttributeSet[]) {
     return attr;
   }, {});
 }
+
+export function getProductsCount(products) {
+  return products.reduce((prev, now) => {
+    return now.productCount + prev;
+  }, 0);
+}

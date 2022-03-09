@@ -13,7 +13,6 @@ export class ItemProduct extends Component<ItemProductProps> {
   render() {
     const isActive = this.props.defaultValue === this.props.value;
     return (
-      // shit code
       <div
         className={cn('attributeItemProduct', {'attributeItemProduct_active': isActive})}
         style={{background: this.props.value}}

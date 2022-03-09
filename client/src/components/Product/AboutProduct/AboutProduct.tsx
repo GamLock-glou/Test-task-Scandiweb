@@ -39,11 +39,6 @@ export class AboutProduct extends Component<AboutProductItemProps, AboutProductI
       brand,
       currency,
       inStock} = this.props;
-      // For the examiner.
-      // You asked not to use dangerouslySetInnerHTML because it is dangerous.
-      // I found a way to clean HTML, thereby dangerouslySetInnerHTML becomes safe to use.
-      // If you don't like this arrangement, I found a way to manage DOMPurify.
-      // This rule can be added {ALLOWED_TAGS: false} to DOMPurify.
     const clearDescription = DOMPurify.sanitize(description);
     const price = getPrice(prices, currency);
     return (

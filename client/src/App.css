@@ -335,7 +335,6 @@ li {
     max-height: 205px;
     overflow-x: hidden;
     overflow-y: auto;
-    z-index: 100;
     margin: 0;
     padding: 0;
     color: #424348;
@@ -347,6 +346,7 @@ li {
 
 .select__list_active {
     display: block;
+    background: #FFFFFF;
 }
 
 .select__list::-webkit-scrollbar {

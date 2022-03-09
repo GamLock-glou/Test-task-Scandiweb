@@ -29,7 +29,10 @@ class CurrencySwitcher extends React.Component {
               <ul className={`select__list ${classNameList}`}>
                 {
                   currencies.map((currency, key) => {
-                    return <li onClick={() => this.onClickItem(currency)} key={key}>
+                    return <li
+                      onClick={() => this.onClickItem(currency)}
+                      key={key}
+                    >
                       {currency.symbol} {currency.label}
                     </li>;
                   })

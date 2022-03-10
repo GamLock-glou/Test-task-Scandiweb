@@ -14,10 +14,6 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
     "rules": {
         "require-jsdoc": ["error", {
             "require": {
@@ -29,7 +25,7 @@
             }
         }],
         "react/prop-types": "off",
-        "max-len": ["error", { "code": 120 }],
+        "max-len": ["error", { "code": 100 }],
         "linebreak-style": ["error", "windows"]
     }
 }

@@ -10,14 +10,14 @@ class CurrencySwitcher extends React.Component {
 
   render() {
     const classNameList = this.props.isCurrencySwicherActive && 'select__list_active';
-    const classNameSelect = !this.props.isCurrencySwicherActive ? 'select__head' : 'select__head__active';
+    const classNameSelect =
+      !this.props.isCurrencySwicherActive ?
+      'select__head' : 'select__head__active';
     return (
       <Query query={GET_ALL_CURRENCIES}>
         {({data}) => {
           if (!data) return null;
-
           const {currencies} = data;
-
           return (
             <div className="select">
               <div

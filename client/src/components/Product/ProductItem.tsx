@@ -41,11 +41,9 @@ export class ProductItem extends Component<ProductItemProps, ProductItemState> {
           if (loading) {
             return <Loading />;
           }
-
           if (!data.product) {
             return <PageNotFound />;
           }
-
           const {
             id,
             name,

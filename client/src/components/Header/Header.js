@@ -6,7 +6,13 @@ import {MyBag} from './Bag/MyBag';
 
 export class Header extends Component {
   render() {
-    const {setCurrency, visible, setVisible, isCurrencySwicherActive, onClickCurrencySwitcher} = this.props;
+    const {
+      setCurrency,
+      visible,
+      setVisible,
+      isCurrencySwicherActive,
+      onClickCurrencySwitcher,
+    } = this.props;
     return (
       <div className="header">
         <div className="wrapper">

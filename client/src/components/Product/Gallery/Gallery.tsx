@@ -32,9 +32,11 @@ class Gallery extends Component<ProductItemProps> {
           })}
           <div className="buttonShowGallery" onClick={onClickShowProduct}>
             {
-                            gallery.length > 3 ?
-                            !isAllImg ? <div>More</div> : <div>Hide</div> :
-                            null
+              gallery.length > 3 ?
+                !isAllImg ?
+                  <div>More</div> :
+                  <div>Hide</div> :
+                null
             }
           </div>
         </div>

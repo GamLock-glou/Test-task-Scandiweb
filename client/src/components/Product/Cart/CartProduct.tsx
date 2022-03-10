@@ -27,7 +27,16 @@ export class CartProduct extends Component<CartProductProps> {
             if (!data || loading) {
               return <div>Loading...</div>;
             }
-            const {product: {id, name, brand, prices, attributes, gallery}} = data;
+            const {
+              product: {
+                id,
+                name,
+                brand,
+                prices,
+                attributes,
+                gallery,
+              },
+            } = data;
             const price = getPrice(prices, currency);
             return <div className={s.window}>
               <div className={s.leftWinow}>
@@ -71,7 +80,9 @@ export class CartProduct extends Component<CartProductProps> {
                     >
                     &gt;
                     </div>
-                  </div> : <div className={s.galleryCart}><img src={gallery[this.state.index]} /></div>
+                  </div> : <div className={s.galleryCart}>
+                    <img src={gallery[this.state.index]} />
+                  </div>
                 }
               </div>
             </div>;

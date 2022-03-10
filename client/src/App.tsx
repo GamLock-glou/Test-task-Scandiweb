@@ -38,7 +38,6 @@ class App extends React.Component<Record<string, never>, AppState> {
     return (
       <div className="App" onClick={this.changeStateCurrencySwitcher}>
         <ProviderProductsInCart.Provider value={this.state.productsInCart}>
-
           <Header
             setCurrency={this.setCurrency}
             setVisible={this.onClick}
@@ -106,7 +105,10 @@ class App extends React.Component<Record<string, never>, AppState> {
     );
     if (newProducts[index]) {
       if (newProducts[index].productCount + count > 0) {
-        newProducts[index] = {...newProducts[index], productCount: newProducts[index].productCount + count};
+        newProducts[index] = {
+          ...newProducts[index],
+          productCount: newProducts[index].productCount + count,
+        };
         this.setState({productsInCart: newProducts});
       } else {
         const filt = newProducts.filter((product, indexProduct) => indexProduct !== index);
@@ -124,12 +126,19 @@ class App extends React.Component<Record<string, never>, AppState> {
         (product) => product.productId === productId &&
           this.attributeIsEqual(product?.attributes, attributes),
     );
-    const newProduct = {productId: productId, productCount: countEl, attributes: attributes, prices: prices};
+    const newProduct = {
+      productId: productId,
+      productCount: countEl,
+      attributes: attributes,
+      prices: prices,
+    };
     if (!product) {
       this.setState({productsInCart: [...this.state.productsInCart, newProduct]});
     } else {
       newProduct.productCount = product.productCount + countEl;
-      const newProducts = this.state.productsInCart.filter((productCart) => productCart !== product);
+      const newProducts = this.state.productsInCart.filter(
+          (productCart) => productCart !== product,
+      );
       newProducts.push(newProduct);
       this.setState({productsInCart: newProducts});
     }

@@ -58,7 +58,8 @@ class Product extends React.Component<PropductProps> {
           </div>
         </NavLink>
         <div
-          className={cn('productInCart', {'productInCart productInCart_active': this.state.isHover})}
+          className={cn('productInCart',
+              {'productInCart productInCart_active': this.state.isHover})}
           onClick={()=> {
             this.onClick(id, this.state.attributesProduct, prices, inStock);
           }}

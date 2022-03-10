@@ -7,8 +7,8 @@ export class Category extends React.Component {
 
     const className =
     currentCategory === name ?
-    'header__link header__link__active' :
-    'header__link';
+      'header__link header__link__active' :
+      'header__link';
 
     return (
       <li className="header__item">

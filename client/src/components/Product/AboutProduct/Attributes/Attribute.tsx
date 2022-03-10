@@ -15,7 +15,11 @@ export class Attribute extends Component<AttributeProps> {
     return (
       <div className="attributeProduct">
         <div className="attributeNameProduct">{name}:</div>
-        <ItemsProduct onClickAttribute={this.onClick} items={items} name={name} defaultValue={defaultValue}/>
+        <ItemsProduct
+          onClickAttribute={this.onClick}
+          items={items} name={name}
+          defaultValue={defaultValue}
+        />
       </div>
     );
   }

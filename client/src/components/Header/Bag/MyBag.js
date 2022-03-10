@@ -11,7 +11,6 @@ export class MyBag extends Component {
           <img src={Cart}/>
           <ProviderProductsInCart.Consumer>
             {
-              // myBagCount
               (products)=> {
                 const count = getProductsCount(products);
                 if (!count) {

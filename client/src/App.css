@@ -510,10 +510,18 @@ li {
     border: none;
 }
 
+.attributeItemColorName {
+    color: #FFFFFF;
+    font-size: 30px;
+}
+
 .aboutTheProduct .attributeItemColor_active {
     width: 100%;
     height: 100%;
     background: #1d1f22cb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .aboutTheProduct .attributeItemColor {

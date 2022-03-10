@@ -18,7 +18,7 @@ export class ItemsProduct extends Component<ItemsProductProps> {
           return <ItemProduct
             key={key}
             index={key}
-            value={item.value}
+            item={item}
             defaultValue={this.props.defaultValue}
             onClickAttribute={this.props.onClickAttribute}
             isColor={isColor}

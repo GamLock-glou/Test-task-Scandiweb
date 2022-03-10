@@ -28,7 +28,11 @@ export class CartAttribute extends Component<CartAttributeProps> {
               item.value :
               <div
                 className={cn(s.attributeItemColor, {[s.attributeItemColor_active]: isActive})}
-              />
+              >
+                <div className='attributeItemColorName'>
+                  {isActive && '✔'}
+                </div>
+              </div>
             }
           </div>;
         })}

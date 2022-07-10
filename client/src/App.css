@@ -798,3 +798,15 @@ li {
     margin-top: 31px;
     margin-bottom: 32px;
 }
+
+.NameAndOptionsFilterItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.NameFilter {
+    font-size: 17px;
+    cursor: pointer;
+}

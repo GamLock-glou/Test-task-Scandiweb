@@ -1,4 +1,4 @@
-import {AttributeSet, Price} from './types';
+import {AttributeSet, Price, Product} from './types';
 
 export function getPrice(prices: Price[], currency: string, isPrice:boolean=true) {
   const price = prices.find((price) => {
@@ -37,4 +37,33 @@ export function getProductsCount(products) {
   return products.reduce((prev, now) => {
     return now.productCount + prev;
   }, 0);
+}
+export function getFilterAttributs(products: Product[]) {
+  const attributesFilter: Record<string, any[]> = {};
+  products.forEach((product) => {
+    product.attributes.forEach((attribute) => {
+      let attributeID = attributesFilter[attribute.id];
+      if (!attributeID) {
+        attributesFilter[attribute.id] = [];
+        attributeID = attributesFilter[attribute.id];
+      }
+      attribute.items.forEach((item) => {
+        attributeID.push(item.value);
+      });
+    });
+  });
+  Object.keys(attributesFilter).forEach( (key) => {
+    attributesFilter[key] = Array.from(new Set(attributesFilter[key]));
+  },
+  );
+  return (attributesFilter);
+}
+
+export function getTags(tags: Record<string, any[]>) {
+  const tagsMass = Object.keys(tags).map((tag) => {
+    return tags[tag].map((item) => {
+      return item;
+    });
+  });
+  return tagsMass.flat();
 }

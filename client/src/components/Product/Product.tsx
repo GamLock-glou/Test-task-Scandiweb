@@ -57,7 +57,7 @@ class Product extends React.Component<PropductProps> {
             </div>
           </div>
         </NavLink>
-        <div
+        {inStock && <div
           className={cn('productInCart',
               {'productInCart productInCart_active': this.state.isHover})}
           onClick={()=> {
@@ -68,7 +68,7 @@ class Product extends React.Component<PropductProps> {
             src={CartWhite}
             className="productInCartImg"
           />
-        </div>
+        </div>}
       </div>
     );
   }

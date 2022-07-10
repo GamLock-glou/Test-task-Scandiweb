@@ -1,0 +1,29 @@
+.DefaultOption {
+    background-color: #cfcfcf41;
+}
+
+.SelectStyle {
+    width: 100px;
+    border: 1px solid #aaa9a9;
+    background-color: #ededed;
+}
+
+.SelectStyle:focus {
+    border: 1px solid #5ECE7B;
+}
+
+.SelectStyle>option {
+    display: flex;
+    justify-content: end;
+}
+
+:focus {
+    outline: none
+}
+
+.NameAndOptionsFilterItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

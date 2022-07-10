@@ -1,0 +1,7 @@
+.AttributeColor {
+    display: flex;
+    width: 5rem;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    height: 50%;
+}

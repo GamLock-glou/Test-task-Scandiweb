@@ -12,7 +12,7 @@ interface AppState {
   isCurrencySwicherActive: boolean;
 }
 
-class App extends React.Component<Record<string, never>, AppState> {
+class App extends React.Component<Record<string, never>> {
   state: AppState = {
     currency: 'USD',
     productsInCart: [],

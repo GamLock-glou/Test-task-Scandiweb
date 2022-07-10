@@ -1,0 +1,87 @@
+.FilterItems {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.FilterItem {
+    display: flex;
+    justify-content: center;
+    border: 1px solid #5ECE7B;
+    width: 19%;
+    min-height: 137px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.FilterItemsAndTags {
+    box-shadow: 0px 0px 10px 5px rgba(139, 139, 139, 0.464);
+    background-color: #ededed;
+    border: 1px solid #5ECE7B;
+    border-radius: 10px;
+    /* min-height: 10%;
+    max-height: 150%; */
+    max-width: 90%;
+    padding-top: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+}
+
+.Tags {
+    box-sizing: border-box;
+    margin-top: 2rem;
+}
+
+.FilterLogo {
+    font-size: 18px;
+    width: 3rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.FilterLogo:hover {
+    color: #5ECE7B;
+}
+
+.FilterLogoActive {
+    font-size: 18px;
+    color: #5ECE7B;
+    width: 3rem;
+    margin-bottom: 0.3rem;
+    cursor: pointer;
+}
+
+.FilterLogoActive:hover {
+    color:black;
+}
+
+.BodyTags {
+    display: flex;
+    flex-wrap: wrap;
+}
+.BodyTag {
+    display: flex;
+    background-color: #aaa9a9;
+    border-radius: 10%;
+    padding: 0rem 1rem 0rem;
+    margin-right: 1rem;
+    margin-bottom: 0.2rem;
+}
+.BodyTag:first-child {
+    margin-left: 0rem;
+}
+
+.BodyTag:hover {
+    background-color: #818181;
+}
+
+.DeleteTag {
+    margin-left: 0.5rem;
+    color:rgb(104, 29, 29);
+    cursor: pointer;
+}
+
+.DeleteTag:hover {
+    color:rgb(216, 37, 37);
+}

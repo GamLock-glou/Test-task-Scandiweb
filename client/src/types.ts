@@ -13,7 +13,13 @@ export interface AttributeSet {
 export interface Price {
     currency: Currency;
     amount: number;
-  }
+}
+
+export interface AttributesFilterProps {
+  nameSelector: string,
+  optionSelector: string[]
+}
+
 export interface Product {
   id: string;
   name: string;

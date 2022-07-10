@@ -4,6 +4,7 @@ import {GET_ONE_CATEGORY} from '../../query/query';
 import Product from './Product';
 import PageNotFound from '../UI/PageNotFound';
 import Loading from '../UI/Loading';
+import {Filter} from '../Filter/Filter';
 
 
 interface ProductListProps {
@@ -33,7 +34,7 @@ export class ProductList extends React.Component<ProductListProps> {
           const {name, products} = data.category;
 
           return (<div className="wrapper">
-
+            <Filter name={name} products={products}/>
             <div className="body__header">
               <h1>{name}</h1>
             </div>

@@ -1,11 +1,6 @@
-.DefaultOption {
-    background-color: #cfcfcf41;
-}
-
 .SelectStyle {
     width: 100px;
-    border: 1px solid #aaa9a9;
-    background-color: #ededed;
+    border: 1px solid #E5E5E5;
 }
 
 .SelectStyle:focus {

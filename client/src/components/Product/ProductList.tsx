@@ -47,6 +47,17 @@ export class ProductList extends React.Component<ProductListProps> {
     url.searchParams.delete(`${index}+${tag}`);
     history.pushState( '', index, url.href);
   };
+  onDeleteTags = () => {
+    const url = new URL(document.location.href);
+    Object.keys(this.state.tags).forEach((index) => {
+      this.state.tags[index].forEach((tag)=>{
+        console.log(`${index}+${tag}`);
+        url.searchParams.delete(`${index}+${tag}`);
+      });
+    });
+    history.pushState( '', '', url.href);
+    this.setState({tags: {}});
+  };
   render() {
     const {currency, categoryTitle, setProductsCart} = this.props;
     return (
@@ -68,6 +79,7 @@ export class ProductList extends React.Component<ProductListProps> {
 
           return (<div className="wrapper">
             <Filter
+              onDeleteTags={this.onDeleteTags}
               tags={this.state.tags}
               onSaveTag={this.onSaveTag}
               onDeleteTag={this.onDeleteTag}

@@ -11,7 +11,11 @@ interface TagProps {
 
 const TagStyle = styled.div`
   display: flex;
-  background-color: #aaa9a9;
+  background-color: #E5E5E5;
+  border: 1px solid ${(props) => {
+    if (props.index === 'Color') return '#5ECE7B';
+    return 'grey';
+  }};
   align-items: center;
   background: ${(props) => props.tag || 'grey'};
   border-radius: 10%;
@@ -29,6 +33,7 @@ export class Tag extends Component<TagProps> {
     const {tag, onClickDeleteTag, index} = this.props;
     return <TagStyle
       tag={tag}
+      index={index}
       className={s.BodyTag}
     >
       {index !== 'Color' && <TextTagStyle tag={tag}>{tag}</TextTagStyle>}

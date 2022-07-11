@@ -7,10 +7,6 @@ interface BlockColorProps extends AttributesFilterProps {
   onSaveTag: (index: string, tag:string) => void,
 }
 
-interface BlockColorState {
-  isClicked: boolean,
-}
-
 const ColorAttribute = styled.div`
   &:hover {
     transform: scale(1.1);
@@ -18,32 +14,25 @@ const ColorAttribute = styled.div`
   width: 30%;
   height: 25px;
   background: ${(props) => props.color || 'grey'};
-  border: none;
-  border-radius: 3px;
-  margin-bottom: 0.1rem;
+  border: 1px solid #5ECE7B;
+  margin-bottom: 0.2rem;
+  margin-left: 0.1rem;
   cursor: pointer;
 `;
 export class BlockColor extends Component<BlockColorProps> {
-  state: BlockColorState = {
-    isClicked: false,
-  };
   onClickColor = (index:string, tag:string) => {
     this.props.onSaveTag(index, tag);
-  };
-  onHandleClick = () => {
-    this.setState({isClicked: !this.state.isClicked});
   };
   render() {
     const {nameSelector: nameAttribute, optionSelector: massColor} = this.props;
     return <div className='NameAndOptionsFilterItem'>
       <div
         className="NameFilter"
-        onClick={this.onHandleClick}
       >
         {nameAttribute}
       </div>
       {
-        (this.state.isClicked && !!massColor.length) &&
+        (!!massColor.length) &&
         <div className={s.AttributeColor}>
           {
             massColor.map((color)=>{

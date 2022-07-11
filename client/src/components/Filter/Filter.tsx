@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {getFilterAttributs, isShowFilter} from '../../util';
+import {Button} from '../UI/Button/Button';
 import {ElementFilter} from './ElementFilter';
 import s from './Filter.module.css';
 import {Tags} from './Tags';
@@ -10,6 +11,7 @@ interface FilterProps {
   tags: Record<string, any[]>,
   onDeleteTag: (index: string, tag: string) => void,
   onSaveTag: (index: string, tag: string) => void,
+  onDeleteTags: () => void;
 };
 
 interface FilterState {
@@ -29,7 +31,7 @@ export class Filter extends Component<FilterProps, FilterState> {
     }
   }
   render() {
-    const {tags, onDeleteTag, onSaveTag} = this.props;
+    const {tags, onDeleteTag, onSaveTag, onDeleteTags} = this.props;
     if (!this.state.isClicked) {
       return <div
         onClick={this.onClickFilter}
@@ -64,10 +66,15 @@ export class Filter extends Component<FilterProps, FilterState> {
               })
             }
           </div>
+          <hr className={s.lineCart}/>
           <Tags
             tags={tags}
             onClickDeleteTag={onDeleteTag}
           />
+          <div
+            className={s.ButtonClose}>
+            <Button onClick={onDeleteTags}>Close</Button>
+          </div>
         </div>
       </div>
     );

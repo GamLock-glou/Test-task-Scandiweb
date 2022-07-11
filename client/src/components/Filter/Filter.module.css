@@ -60,20 +60,9 @@
     display: flex;
     flex-wrap: wrap;
 }
-.BodyTag {
-    display: flex;
-    background-color: #aaa9a9;
-    border-radius: 10%;
-    padding: 0rem 1rem 0rem;
-    margin-right: 1rem;
-    margin-bottom: 0.2rem;
-}
+
 .BodyTag:first-child {
     margin-left: 0rem;
-}
-
-.BodyTag:hover {
-    background-color: #818181;
 }
 
 .DeleteTag {

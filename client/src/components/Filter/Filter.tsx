@@ -7,40 +7,30 @@ import {Tags} from './Tags';
 interface FilterProps {
   name: string,
   products: any,
+  tags: Record<string, any[]>,
+  countTags: number,
+  onDeleteTag: (index: string, tag: string) => void,
+  onSaveTag: (index: string, tag: string) => void,
 };
 
 interface FilterState {
   isClicked: boolean,
-  tags: Record<string, any[]>,
-  countTags: number,
 }
 
 export class Filter extends Component<FilterProps, FilterState> {
   state: FilterState = {
     isClicked: false,
-    tags: {},
-    countTags: 0,
-  };
-  onSaveTag = (index: string, tag: string, count = 1) => {
-    const newTags = {...this.state.tags};
-    if (!newTags[index]) {
-      newTags[index] = [tag];
-    } else {
-      newTags[index] = [...newTags[index], tag];
-    }
-    this.setState({tags: newTags, countTags: this.state.countTags+count});
   };
   onClickFilter = () => {
     this.setState({isClicked: !this.state.isClicked});
   };
-  onClickDeleteTag = (index: string, tag: string, count = 1) => {
-    const newTags = this.state.tags[index].filter((tagEl)=>tagEl !== tag);
-    this.setState(
-        {tags: {...this.state.tags, [index]: newTags},
-          countTags: this.state.countTags-count},
-    );
-  };
+  componentDidMount() {
+    if (this.props.countTags) {
+      this.setState({isClicked: true});
+    }
+  }
   render() {
+    const {tags, countTags, onDeleteTag, onSaveTag} = this.props;
     if (!this.state.isClicked) {
       return <div
         onClick={this.onClickFilter}
@@ -67,18 +57,18 @@ export class Filter extends Component<FilterProps, FilterState> {
                   <ElementFilter
                     filterAttributs={filterAttributs[key]}
                     nameSelector={key}
-                    tags={this.state.tags}
-                    onSaveTag={this.onSaveTag}
-                    onClickDeleteTag={this.onClickDeleteTag}
+                    tags={tags}
+                    onSaveTag={onSaveTag}
+                    onClickDeleteTag={onDeleteTag}
                   />
                 </div>;
               })
             }
           </div>
           <Tags
-            tags={this.state.tags}
-            countTags={this.state.countTags}
-            onClickDeleteTag={this.onClickDeleteTag}
+            tags={tags}
+            countTags={countTags}
+            onClickDeleteTag={onDeleteTag}
           />
         </div>
       </div>

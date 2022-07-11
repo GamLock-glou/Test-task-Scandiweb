@@ -6,7 +6,7 @@ import {Select} from '../UI/Select/Select';
 interface ElementsFilterProps {
   filterAttributs: any,
   nameSelector: any,
-  tags: any,
+  tags: Record<string, any[]>,
   onSaveTag: (index: string, tag: string) => void,
   onClickDeleteTag: (index: string, tag: string) => void,
 }

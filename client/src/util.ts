@@ -67,3 +67,37 @@ export function getTags(tags: Record<string, any[]>) {
   });
   return tagsMass.flat();
 }
+
+export function getTagsFromQueryParamsUrl() {
+  const params = Object.fromEntries(new URLSearchParams(window.location.search).entries());
+  const keysParams = Object.keys(params);
+  const newTags = {};
+  // TODO: newCountTags - useless, but at the moment it is necessary
+  let newCountTags = 0;
+  keysParams.forEach((keyParams)=>{
+    const newKey = keyParams.split('+')[0];
+    newCountTags++;
+    if (!newTags[newKey]) {
+      newTags[newKey] = [params[keyParams]];
+    } else {
+      newTags[newKey] = [...newTags[newKey], params[keyParams]];
+    }
+  });
+  // delete newTags['Sizee'];
+  return {newTags, newCountTags};
+}
+
+export function isTagAvailableAttribute(product: Product) {
+  const params = Object.fromEntries(new URLSearchParams(window.location.search).entries());
+  const keysParams = Object.keys(params);
+  const {newTags} = getTagsFromQueryParamsUrl();
+  const isSubset = (array1, array2) => array2.some((element) => array1.includes(element));
+  if (!keysParams.length) {
+    return true;
+  }
+  return product.attributes.some((attribute)=>{
+    if (newTags.hasOwnProperty(attribute.id)) {
+      return isSubset(attribute.items.map((item)=> item.value), newTags[attribute.id]);
+    }
+  });
+}

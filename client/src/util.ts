@@ -56,7 +56,7 @@ export function getFilterAttributs(products: Product[]) {
     attributesFilter[key] = Array.from(new Set(attributesFilter[key]));
   },
   );
-  return (attributesFilter);
+  return attributesFilter;
 }
 
 export function getTags(tags: Record<string, any[]>) {
@@ -72,18 +72,17 @@ export function getTagsFromQueryParamsUrl() {
   const params = Object.fromEntries(new URLSearchParams(window.location.search).entries());
   const keysParams = Object.keys(params);
   const newTags = {};
-  // TODO: newCountTags - useless, but at the moment it is necessary
-  let newCountTags = 0;
   keysParams.forEach((keyParams)=>{
     const newKey = keyParams.split('+')[0];
-    newCountTags++;
     if (!newTags[newKey]) {
       newTags[newKey] = [params[keyParams]];
     } else {
       newTags[newKey] = [...newTags[newKey], params[keyParams]];
     }
   });
-  // delete newTags['Sizee'];
+  // TODO: newCountTags - useless, but at the moment it is necessary
+  console.log(newTags);
+  const newCountTags = Object.values(newTags).flat().length;
   return {newTags, newCountTags};
 }
 

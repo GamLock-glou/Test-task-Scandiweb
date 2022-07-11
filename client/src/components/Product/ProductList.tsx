@@ -52,7 +52,6 @@ export class ProductList extends React.Component<ProductListProps> {
   };
   render() {
     const {currency, categoryTitle, setProductsCart} = this.props;
-    // console.log(this.state.tags);
     return (
       <Query
         query={GET_ONE_CATEGORY}

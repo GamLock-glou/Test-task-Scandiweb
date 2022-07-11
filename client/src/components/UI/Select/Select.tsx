@@ -33,7 +33,7 @@ export class Select extends Component<SelectProps> {
           {nameSelector}
         </div>
         {
-          this.state.isClicked && <div>
+          (this.state.isClicked && !!optionSelector.length) && <div>
             <select
               multiple={true}
               onChange={this.onHandleClick}

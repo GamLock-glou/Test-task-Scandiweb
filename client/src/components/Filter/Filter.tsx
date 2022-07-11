@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getFilterAttributs} from '../../util';
+import {getFilterAttributs, isShowFilter} from '../../util';
 import {ElementFilter} from './ElementFilter';
 import s from './Filter.module.css';
 import {Tags} from './Tags';
@@ -8,7 +8,6 @@ interface FilterProps {
   name: string,
   products: any,
   tags: Record<string, any[]>,
-  countTags: number,
   onDeleteTag: (index: string, tag: string) => void,
   onSaveTag: (index: string, tag: string) => void,
 };
@@ -25,12 +24,12 @@ export class Filter extends Component<FilterProps, FilterState> {
     this.setState({isClicked: !this.state.isClicked});
   };
   componentDidMount() {
-    if (this.props.countTags) {
+    if (isShowFilter(this.props.tags)) {
       this.setState({isClicked: true});
     }
   }
   render() {
-    const {tags, countTags, onDeleteTag, onSaveTag} = this.props;
+    const {tags, onDeleteTag, onSaveTag} = this.props;
     if (!this.state.isClicked) {
       return <div
         onClick={this.onClickFilter}
@@ -67,7 +66,6 @@ export class Filter extends Component<FilterProps, FilterState> {
           </div>
           <Tags
             tags={tags}
-            countTags={countTags}
             onClickDeleteTag={onDeleteTag}
           />
         </div>

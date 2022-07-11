@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
+import {isShowTag} from '../../util';
 import s from './Filter.module.css';
 import {Tag} from './Tag';
 
 interface TagsProps {
     tags: Record<string, any[]>,
     onClickDeleteTag: any,
-    countTags: number,
 }
 
 export class Tags extends Component<TagsProps> {
@@ -14,7 +14,7 @@ export class Tags extends Component<TagsProps> {
     return (
       <div className={s.Tags}>
         {
-          !!this.props.countTags &&
+          isShowTag(this.props.tags) &&
           <div>
             <div>Tags:</div>
             <div className={s.BodyTags}>

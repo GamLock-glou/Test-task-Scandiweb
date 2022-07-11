@@ -25,7 +25,8 @@ export class ElementFilter extends Component<ElementsFilterProps> {
     if (yesNo.includes(filterAttributs[0].toLowerCase())) {
       return <CheckBox
         nameSelector={nameSelector}
-        optionSelector={filterAttributs}
+        optionSelector={optionSelector}
+        attibutes={filterAttributs}
         onSaveTag={onSaveTag}
         onClickDeleteTag={onClickDeleteTag}
       />;

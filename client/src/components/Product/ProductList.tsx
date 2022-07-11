@@ -16,17 +16,15 @@ interface ProductListProps {
 
 interface FilterState {
   tags: Record<string, any[]>,
-  countTags: number,
 }
 
 export class ProductList extends React.Component<ProductListProps> {
   state: FilterState = {
     tags: {},
-    countTags: 0,
   };
   componentDidMount() {
-    const {newTags, newCountTags} = getTagsFromQueryParamsUrl();
-    this.setState({tags: newTags, countTags: newCountTags});
+    const newTags = getTagsFromQueryParamsUrl();
+    this.setState({tags: newTags});
   }
   onSaveTag = (index: string, tag: string, count = 1) => {
     const newTags = {...this.state.tags};
@@ -35,7 +33,7 @@ export class ProductList extends React.Component<ProductListProps> {
     } else {
       newTags[index] = [...newTags[index], tag];
     }
-    this.setState({tags: newTags, countTags: this.state.countTags+count});
+    this.setState({tags: newTags});
     const url = new URL(document.location.href);
     url.searchParams.set(`${index}+${tag}`, tag);
     history.pushState( '', index, url.href);
@@ -43,8 +41,7 @@ export class ProductList extends React.Component<ProductListProps> {
   onDeleteTag = (index: string, tag: string, count = 1) => {
     const newTags = this.state.tags[index].filter((tagEl)=>tagEl !== tag);
     this.setState(
-        {tags: {...this.state.tags, [index]: newTags},
-          countTags: this.state.countTags-count},
+        {tags: {...this.state.tags, [index]: newTags}},
     );
     const url = new URL(document.location.href);
     url.searchParams.delete(`${index}+${tag}`);
@@ -72,7 +69,6 @@ export class ProductList extends React.Component<ProductListProps> {
           return (<div className="wrapper">
             <Filter
               tags={this.state.tags}
-              countTags={this.state.countTags}
               onSaveTag={this.onSaveTag}
               onDeleteTag={this.onDeleteTag}
               name={name}

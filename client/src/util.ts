@@ -80,16 +80,27 @@ export function getTagsFromQueryParamsUrl() {
       newTags[newKey] = [...newTags[newKey], params[keyParams]];
     }
   });
-  // TODO: newCountTags - useless, but at the moment it is necessary
-  console.log(newTags);
-  const newCountTags = Object.values(newTags).flat().length;
-  return {newTags, newCountTags};
+  return newTags;
+}
+
+export function isShowTag(tags: Record<string, any[]>) {
+  const yesNo = ['yes', 'no'];
+  const newCountTags = Object.values(tags).flat()
+      .filter((tag: any)=> !yesNo.includes(tag.toLowerCase())).length;
+  if (!newCountTags) return false;
+  return true;
+}
+
+export function isShowFilter(tags: Record<string, any[]>) {
+  const newCountTags = Object.values(tags).flat().length;
+  if (!newCountTags) return false;
+  return true;
 }
 
 export function isTagAvailableAttribute(product: Product) {
   const params = Object.fromEntries(new URLSearchParams(window.location.search).entries());
   const keysParams = Object.keys(params);
-  const {newTags} = getTagsFromQueryParamsUrl();
+  const newTags = getTagsFromQueryParamsUrl();
   const isSubset = (array1, array2) => array2.some((element) => array1.includes(element));
   if (!keysParams.length) {
     return true;

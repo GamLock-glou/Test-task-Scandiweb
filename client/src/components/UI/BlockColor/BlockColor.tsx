@@ -22,7 +22,6 @@ const ColorAttribute = styled.div`
   border-radius: 3px;
   margin-bottom: 0.1rem;
   cursor: pointer;
-}
 `;
 export class BlockColor extends Component<BlockColorProps> {
   state: BlockColorState = {
@@ -44,7 +43,7 @@ export class BlockColor extends Component<BlockColorProps> {
         {nameAttribute}
       </div>
       {
-        this.state.isClicked &&
+        (this.state.isClicked && !!massColor.length) &&
         <div className={s.AttributeColor}>
           {
             massColor.map((color)=>{

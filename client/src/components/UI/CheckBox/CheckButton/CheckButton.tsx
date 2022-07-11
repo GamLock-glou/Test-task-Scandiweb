@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 
 interface CheckButtonProps {
-    option: string,
+    attibute: string,
     onSaveDeleteTag: (name:string, checked: boolean) => void,
+    optionSelector: string[]
 }
 
 export class CheckButton extends Component<CheckButtonProps> {
@@ -11,14 +12,16 @@ export class CheckButton extends Component<CheckButtonProps> {
     this.props.onSaveDeleteTag(name, checked);
   };
   render() {
+    const isChecked = !this.props.optionSelector.includes(this.props.attibute);
     return (
       <div>
         <input
           type="checkbox"
-          name={this.props.option}
+          name={this.props.attibute}
           onChange={this.onHandleInputChange}
+          checked={isChecked}
         />
-        <label>{this.props.option}</label>
+        <label>{this.props.attibute}</label>
       </div>
     );
   }

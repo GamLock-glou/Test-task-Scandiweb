@@ -4,7 +4,7 @@ import {GET_ONE_PRODUCT} from '../../../query/query';
 import {getPrice} from '../../../util';
 import s from './Cart.module.css';
 import {CartAttribute} from './CartAttribute';
-
+import Loading from '../../UI/Loading.js';
 
 interface CartProductProps {
     productCart: any
@@ -25,7 +25,7 @@ export class CartProduct extends Component<CartProductProps> {
         {
           ({data, loading}) => {
             if (!data || loading) {
-              return <div>Loading...</div>;
+              return <Loading />;
             }
             const {
               product: {

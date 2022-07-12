@@ -48,7 +48,7 @@
     color:black;
 }
 
-.ButtonClose {
+.ButtonClearClose {
     display: flex;
     justify-content: end;
 }
@@ -71,4 +71,10 @@
 
 .DeleteTag:hover {
     color:rgb(216, 37, 37);
+}
+
+.ButtonsFilter {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
 }

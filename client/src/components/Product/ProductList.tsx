@@ -5,7 +5,7 @@ import Product from './Product';
 import PageNotFound from '../UI/PageNotFound';
 import Loading from '../UI/Loading';
 import {Filter} from '../Filter/Filter';
-import {getTagsFromQueryParamsUrl, isTagAvailableAttribute} from '../../util';
+import {clearURLSearchParams, getTagsFromQueryParamsUrl, isTagAvailableAttribute} from '../../util';
 
 
 interface ProductListProps {
@@ -47,15 +47,8 @@ export class ProductList extends React.Component<ProductListProps> {
     url.searchParams.delete(`${index}+${tag}`);
     history.pushState( '', index, url.href);
   };
-  onDeleteTags = () => {
-    const url = new URL(document.location.href);
-    Object.keys(this.state.tags).forEach((index) => {
-      this.state.tags[index].forEach((tag)=>{
-        console.log(`${index}+${tag}`);
-        url.searchParams.delete(`${index}+${tag}`);
-      });
-    });
-    history.pushState( '', '', url.href);
+  onDeleteAllTags = () => {
+    clearURLSearchParams(this.state.tags);
     this.setState({tags: {}});
   };
   render() {
@@ -79,7 +72,7 @@ export class ProductList extends React.Component<ProductListProps> {
 
           return (<div className="wrapper">
             <Filter
-              onDeleteTags={this.onDeleteTags}
+              onDeleteAllTags={this.onDeleteAllTags}
               tags={this.state.tags}
               onSaveTag={this.onSaveTag}
               onDeleteTag={this.onDeleteTag}

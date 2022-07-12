@@ -92,22 +92,30 @@ export function isShowTag(tags: Record<string, any[]>) {
 }
 
 export function isShowFilter(tags: Record<string, any[]>) {
-  const newCountTags = Object.values(tags).flat().length;
-  if (!newCountTags) return false;
-  return true;
+  return !!Object.values(tags).flat().length;
 }
 
 export function isTagAvailableAttribute(product: Product) {
   const params = Object.fromEntries(new URLSearchParams(window.location.search).entries());
   const keysParams = Object.keys(params);
   const newTags = getTagsFromQueryParamsUrl();
-  const isSubset = (array1, array2) => array2.some((element) => array1.includes(element));
+  const findEquality = (array1, array2) => array2.some((element) => array1.includes(element));
   if (!keysParams.length) {
     return true;
   }
   return product.attributes.some((attribute)=>{
     if (newTags.hasOwnProperty(attribute.id)) {
-      return isSubset(attribute.items.map((item)=> item.value), newTags[attribute.id]);
+      return findEquality(attribute.items.map((item)=> item.value), newTags[attribute.id]);
     }
   });
 }
+
+export function clearURLSearchParams(tags: Record<string, any[]>) {
+  const url = new URL(document.location.href);
+  Object.keys(tags).forEach((index) => {
+    tags[index].forEach((tag)=>{
+      url.searchParams.delete(`${index}+${tag}`);
+    });
+  });
+  history.pushState( '', '', url.href);
+};

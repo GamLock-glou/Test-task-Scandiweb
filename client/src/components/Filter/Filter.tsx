@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {getFilterAttributs, isShowFilter} from '../../util';
-import {Button} from '../UI/Button/Button';
+import {ButtonsFilter} from './ButtonsFilter';
 import {ElementFilter} from './ElementFilter';
 import s from './Filter.module.css';
 import {Tags} from './Tags';
@@ -11,7 +11,7 @@ interface FilterProps {
   tags: Record<string, any[]>,
   onDeleteTag: (index: string, tag: string) => void,
   onSaveTag: (index: string, tag: string) => void,
-  onDeleteTags: () => void;
+  onDeleteAllTags: () => void;
 };
 
 interface FilterState {
@@ -22,16 +22,20 @@ export class Filter extends Component<FilterProps, FilterState> {
   state: FilterState = {
     isClicked: false,
   };
-  onClickFilter = () => {
-    this.setState({isClicked: !this.state.isClicked});
-  };
   componentDidMount() {
     if (isShowFilter(this.props.tags)) {
       this.setState({isClicked: true});
     }
   }
+  onClickFilter = () => {
+    this.setState({isClicked: !this.state.isClicked});
+  };
+  onDeleteAllTagsAndCloseFilter = () => {
+    this.setState({isClicked: false});
+    this.props.onDeleteAllTags();
+  };
   render() {
-    const {tags, onDeleteTag, onSaveTag, onDeleteTags} = this.props;
+    const {tags, onDeleteTag, onSaveTag, onDeleteAllTags} = this.props;
     if (!this.state.isClicked) {
       return <div
         onClick={this.onClickFilter}
@@ -71,10 +75,10 @@ export class Filter extends Component<FilterProps, FilterState> {
             tags={tags}
             onClickDeleteTag={onDeleteTag}
           />
-          <div
-            className={s.ButtonClose}>
-            <Button onClick={onDeleteTags}>Close</Button>
-          </div>
+          <ButtonsFilter
+            onDeleteAllTags={onDeleteAllTags}
+            onDeleteAllTagsAndCloseFilter={this.onDeleteAllTagsAndCloseFilter}
+          />
         </div>
       </div>
     );

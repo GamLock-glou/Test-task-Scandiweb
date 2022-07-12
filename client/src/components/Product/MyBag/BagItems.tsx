@@ -28,9 +28,7 @@ export class BagItems extends Component<BagItemsProps> {
                   currency={this.props.currency}
                   productsInCart={productsInCart}/>
                 <div className='totalBag'>
-                  <div>
-                                        Total:
-                  </div>
+                  <div>Total:</div>
                   <div>
                     {getTotal(productsInCart, this.props.currency)}
                   </div>

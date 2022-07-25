@@ -99,26 +99,38 @@
 
 .leftGallery {
     position: absolute;
-    bottom: 50%;
-    margin-left: 10px;
+    bottom: 5%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    background-color: #1D1F22;
     color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .leftGallery:hover {
-    color: #1D1F22;
+    background-color: #5ECE7B;
     cursor: pointer;
 }
 
 .rightGallery {
     margin-right: 10px;
     position: absolute;
-    bottom: 50%;
+    bottom: 5%;
     right: 0;
+    width: 24px;
+    height: 24px;
+    background-color: #1D1F22;
     color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .rightGallery:hover {
-    color: #1D1F22;
+    background-color: #5ECE7B;
     cursor: pointer;
 }
 
@@ -175,22 +187,41 @@
     margin-bottom: 1rem;
 }
 
-.attributeItemColor {
-    width: 100%;
-    height: 100%;
+.colorAttribute {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
-.attributeItemColor_active {
-    width: 100%;
-    height: 100%;
-    background: #1d1f22cb;
+.colorAttribute:hover {
+    border: 1px solid #5ECE7B;
 }
 
-.attributeItemColor:hover {
-    width: 100%;
-    height: 100%;
-    background: #1d1f22cb;
+.colorAttributeActive {
+    border: 1px solid #5ECE7B;
+}
+
+.blockColor {
+    width: 32px;
+    height: 32px;
+    border: 1px solid#D3D2D5;
+}
+
+.finalPrice td {
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.finalPrice {
+    margin-bottom: 1rem;
+}
+
+.attributePrice {
+    font-weight: bold;
+    display: flex;
+    padding-left: 5px;
 }

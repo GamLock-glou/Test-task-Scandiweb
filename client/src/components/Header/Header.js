@@ -28,7 +28,10 @@ export class Header extends Component {
                 onClickCurrencySwitcher={onClickCurrencySwitcher}
               />
             </div>
-            <MyBag setVisible={setVisible} visible={visible} />
+            <MyBag
+              setVisible={setVisible}
+              visible={visible}
+            />
           </div>
         </div>
       </div>

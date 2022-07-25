@@ -3,60 +3,52 @@ import React, {Component} from 'react';
 import {AttributeSet} from '../../../types';
 
 interface AttributeProductInCartProps {
-    attribute: AttributeSet
-    attributeCart: any
-    isColor: boolean
+    attribute: AttributeSet,
+    attributeCart: any,
+    isColor: boolean,
+    numberProduct: number,
+    changeAttribute: (id: string,
+      attributeIndex: string,
+      attributeValue: string) => void
 }
 
 export class AttributeProductInCart extends Component<AttributeProductInCartProps> {
   render() {
     const {attribute, attributeCart, isColor} = this.props;
-    let isAddItem = false;
     return (
       <div className='attributeCart'>
         <div className='attributeNameCart'>{attribute.name}:</div>
         <div className='itemsCart'>
-          {attribute.items.map((item, key) => {
-            let className = 'itemCart';
-            let isActive = false;
-            if (item.value == attributeCart[attribute.name]) {
-              isAddItem = true;
-              isActive = true;
-              className = 'itemCart itemCart_active';
-            }
-            if (key === 3 && !isAddItem) {
-              return <div
-                key={key}
-                className="itemCart itemCart_active"
-                style={{background: attributeCart[attribute.name]}}
-              >
-                {
-                  !isColor ?
-                  item.value :
-                  <div
-                    className='colorItem_active'
-                  />
-                }
+          {attribute.items.map((item) => {
+            const isActive = item.value == attributeCart[attribute.name];
+            if (isColor) {
+              return <div key={item.id} className={cn('colorItem', {'colorItemActive': isActive})}>
+                <div
+                  onClick={() => this.onClicked(item.value)}
+                  style={{background: item.value}}
+                  className={cn('blockColor')}
+                >
+                </div>
               </div>;
             }
-            if (key < 4) {
-              return <div
-                key={key}
-                style={{background: item.value}}
-                className={className}
-              >
-                {
-                  !isColor ?
-                  item.value :
-                  <div
-                    className={cn('colorItem', {'colorItem_active': isActive})}
-                  />
-                }
-              </div>;
-            }
+            return <div
+              onClick={() => this.onClicked(item.value)}
+              className={cn('itemCart', {'itemCartActive': isActive})}
+              key={item.id}
+            >
+              {item.value}
+            </div>;
           })}
         </div>
       </div>
     );
   }
+
+  onClicked = (attributeValue) => {
+    this.props.changeAttribute(
+        this.props.attribute.name,
+        attributeValue,
+        String(this.props.numberProduct),
+    );
+  };
 }

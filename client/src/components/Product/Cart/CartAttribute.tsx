@@ -4,11 +4,11 @@ import s from './Cart.module.css';
 import cn from 'classnames/bind';
 
 interface CartAttributeProps {
-    attribute: AttributeSet
-    attributeCart: any
-    changeAttribute:any
-    id: string
-    isColor: boolean
+    attribute: AttributeSet,
+    attributeCart: any,
+    changeAttribute:any,
+    isColor: boolean,
+    numberProduct: number,
 }
 
 export class CartAttribute extends Component<CartAttributeProps> {
@@ -18,28 +18,32 @@ export class CartAttribute extends Component<CartAttributeProps> {
       <div className={s.itemsCart}>
         {attribute.items.map((item, key) => {
           const isActive = attributeCart[attribute.name] === item.value;
+          if (isColor) {
+            return <div
+              key={key}
+              onClick={()=>this.onClick(item.value)}
+              className={cn(s.colorAttribute, {[s.colorAttributeActive]: isActive})}>
+              <div
+                style={{background: item.value}}
+                className={s.blockColor}
+              />
+            </div>;
+          }
           return <div
             key={key}
             onClick={()=>this.onClick(item.value)}
-            style={{background: item.value}}
             className={cn(s.itemCart, {[s.itemCart_active]: isActive})}>
-            {
-              !isColor ?
-              item.value :
-              <div
-                className={cn(s.attributeItemColor, {[s.attributeItemColor_active]: isActive})}
-              >
-                <div className='attributeItemColorName'>
-                  {isActive && '✔'}
-                </div>
-              </div>
-            }
+            {item.value}
           </div>;
         })}
       </div>
     );
   }
   onClick = (attributeValue) => {
-    this.props.changeAttribute(this.props.id, this.props.attribute.name, attributeValue);
+    this.props.changeAttribute(
+        this.props.attribute.name,
+        attributeValue,
+        String(this.props.numberProduct),
+    );
   };
 }

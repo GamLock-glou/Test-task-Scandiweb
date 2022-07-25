@@ -7,10 +7,11 @@ import {CartAttribute} from './CartAttribute';
 import Loading from '../../UI/Loading.js';
 
 interface CartProductProps {
-    productCart: any
-    currency: string
-    addProductCount: any
-    changeAttribute:any
+    productCart: any,
+    numberProduct: number,
+    currency: string,
+    addProductCount: any,
+    changeAttribute:any,
 }
 
 export class CartProduct extends Component<CartProductProps> {
@@ -19,7 +20,7 @@ export class CartProduct extends Component<CartProductProps> {
   };
 
   render() {
-    const {productCart, currency, addProductCount, changeAttribute} = this.props;
+    const {productCart, currency, addProductCount, changeAttribute, numberProduct} = this.props;
     return (
       <Query fetchPolicy='no-cache' query={GET_ONE_PRODUCT} variables={{id: productCart.productId}}>
         {
@@ -49,7 +50,7 @@ export class CartProduct extends Component<CartProductProps> {
                     return <div key={key}>
                       <div className={s.nameProduct}>{attribute.name}</div>
                       <CartAttribute
-                        id={id}
+                        numberProduct={numberProduct}
                         isColor={isColor}
                         attribute={attribute}
                         attributeCart={productCart.attributes}
@@ -61,9 +62,15 @@ export class CartProduct extends Component<CartProductProps> {
               </div>
               <div className={s.rightWindow}>
                 <div className={s.interfaceCount}>
-                  <div className={s.buttonCount} onClick={() => addProductCount(id)}>+</div>
+                  <div
+                    className={s.buttonCount}
+                    onClick={() => addProductCount(id, productCart.attributes)}
+                  >+</div>
                   <div className={s.countProduct}>{productCart.productCount}</div>
-                  <div className={s.buttonCount} onClick={() => addProductCount(id, -1)} >-</div>
+                  <div
+                    className={s.buttonCount}
+                    onClick={() => addProductCount(id, productCart.attributes, -1)}
+                  >-</div>
                 </div>
                 {
                   gallery.length > 1 ?

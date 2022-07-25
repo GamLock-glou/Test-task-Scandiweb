@@ -25,6 +25,13 @@ export function getTotal(products: any, currency: string) {
   return total ? curr + total.toFixed(2) : 0;
 }
 
+export function getTax21procent(total:string) {
+  const curr = total[0];
+  const price = Number(total.replace(curr, ''));
+  const tax21 = price * 21 /100;
+  return curr + tax21.toFixed(2);
+}
+
 export function getAttributes(attributes: AttributeSet[]) {
   return attributes.reduce((prev, now) => {
     const attr = prev;

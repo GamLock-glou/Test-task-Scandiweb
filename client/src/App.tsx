@@ -82,19 +82,18 @@ class App extends React.Component<Record<string, never>> {
     }
   };
 
-  changeAttribute = (id, attributeIndex, attributeValue) => {
+  changeAttribute = (attributeIndex, attributeValue, numberProduct) => {
     const newProducts = [...this.state.productsInCart];
-    const index = newProducts.findIndex(({productId}) => productId === id);
-    if (newProducts[index]) {
-      newProducts[index] = {
-        ...newProducts[index],
-        attributes: {
-          ...newProducts[index].attributes,
-          [attributeIndex]: attributeValue,
-        },
-      };
-      this.setState({productsInCart: newProducts});
-    }
+    console.log(numberProduct, Object.keys(newProducts));
+    const index = String(numberProduct);
+    newProducts[index] = {
+      ...newProducts[index],
+      attributes: {
+        ...newProducts[index].attributes,
+        [attributeIndex]: attributeValue,
+      },
+    };
+    this.setState({productsInCart: newProducts});
   };
 
   addProductCount = (id: string, attribute: {}, count: number = 1) => {
@@ -111,7 +110,7 @@ class App extends React.Component<Record<string, never>> {
         };
         this.setState({productsInCart: newProducts});
       } else {
-        const filt = newProducts.filter((product, indexProduct) => indexProduct !== index);
+        const filt = newProducts.filter((_, indexProduct) => indexProduct !== index);
         this.setState({productsInCart: filt});
       }
     }

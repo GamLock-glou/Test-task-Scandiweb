@@ -5,9 +5,12 @@ import ProductsInCart from './ProductsInCart';
 import {NavLink} from 'react-router-dom';
 
 interface BagItemsProps {
-    currency: string
-    addProductCount:any
-    setVisible:any
+    currency: string,
+    addProductCount:any,
+    setVisible:any,
+    changeAttribute: (id: string,
+      attributeIndex: string,
+      attributeValue: string) => void,
 }
 
 
@@ -20,13 +23,14 @@ export class BagItems extends Component<BagItemsProps> {
             return (
               <div>
                 <div className='headerBag'>
-                  <h1>My Bag</h1>,
-                  {productsInCart.length} items
+                  <h1>My Bag,</h1>
+                  <p>{productsInCart.length} items</p>
                 </div>
                 <ProductsInCart
                   addProductCount={this.props.addProductCount}
                   currency={this.props.currency}
-                  productsInCart={productsInCart}/>
+                  productsInCart={productsInCart}
+                  changeAttribute={this.props.changeAttribute}/>
                 <div className='totalBag'>
                   <div>Total:</div>
                   <div>

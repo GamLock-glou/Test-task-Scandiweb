@@ -14,11 +14,17 @@ export class ButtonsFilter extends Component<ButtonsFilterProps> {
       <div className={s.ButtonsFilter}>
         <div
           className={s.ButtonClearClose}>
-          <Button onClick={onDeleteAllTags}>Clear</Button>
+          <Button
+            onClick={onDeleteAllTags}
+            color={'#FFFFF'}
+          >
+            Clear
+          </Button>
         </div>
         <div
           className={s.ButtonClearClose}>
           <Button
+            color={'#FFFFF'}
             onClick={onDeleteAllTagsAndCloseFilter}
           >
             Close

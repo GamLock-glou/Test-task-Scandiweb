@@ -67,6 +67,7 @@ export class Products extends Component<ProductsProps> {
             addProductCount={addProductCount}
             setVisible={setVisible}
             currency={currency}
+            changeAttribute={changeAttribute}
           />
         </Model>
       </div>

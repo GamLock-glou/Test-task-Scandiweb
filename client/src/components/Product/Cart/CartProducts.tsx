@@ -20,6 +20,7 @@ export class CartProducts extends Component<CartProductsProps> {
           return <div key={key}>
             <hr className={s.lineCart}/>
             <CartProduct
+              numberProduct={key}
               addProductCount={addProductCount}
               currency={currency}
               productCart={productCart}

@@ -5,14 +5,18 @@ import {Query} from '@apollo/react-components';
 import {AttributeProductInCart} from './AttributeProductInCart';
 
 interface ProductInCartProps {
-    product: any
-    currency: string
-    addProductCount: any
+    product: any,
+    currency: string,
+    addProductCount: any,
+    numberProduct: number,
+    changeAttribute: (id: string,
+      attributeIndex: string,
+      attributeValue: string) => void
 }
 
 export class ProductInCart extends Component<ProductInCartProps> {
   render() {
-    const {product, currency, addProductCount} = this.props;
+    const {product, currency, addProductCount, changeAttribute, numberProduct} = this.props;
     return (
       <Query fetchPolicy='no-cache' query={GET_ONE_PRODUCT} variables={{id: product.productId}}>
         {({data, loading}) => {
@@ -30,9 +34,11 @@ export class ProductInCart extends Component<ProductInCartProps> {
                 const isColor = attribute.name === 'Color';
                 return <AttributeProductInCart
                   key={key}
+                  numberProduct={numberProduct}
                   isColor={isColor}
                   attributeCart={product.attributes}
                   attribute={attribute}
+                  changeAttribute={changeAttribute}
                 />;
               })}</div>
             </div>

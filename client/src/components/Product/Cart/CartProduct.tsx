@@ -20,7 +20,7 @@ export class CartProduct extends Component<CartProductProps> {
   };
 
   render() {
-    const {productCart, currency, addProductCount, changeAttribute, numberProduct} = this.props;
+    const {productCart, currency, changeAttribute, addProductCount, numberProduct} = this.props;
     return (
       <Query fetchPolicy='no-cache' query={GET_ONE_PRODUCT} variables={{id: productCart.productId}}>
         {
@@ -61,7 +61,9 @@ export class CartProduct extends Component<CartProductProps> {
                 </div>
               </div>
               <div className={s.rightWindow}>
-                <div className={s.interfaceCount}>
+                <div
+                  className={s.interfaceCount}
+                >
                   <div
                     className={s.buttonCount}
                     onClick={() => addProductCount(id, productCart.attributes)}
@@ -72,25 +74,24 @@ export class CartProduct extends Component<CartProductProps> {
                     onClick={() => addProductCount(id, productCart.attributes, -1)}
                   >-</div>
                 </div>
-                {
-                  gallery.length > 1 ?
-                  <div className={s.galleryCart}>
-                    <div
-                      onClick={() => this.onClickLeft(gallery.length-1)}
-                      className={s.leftGallery} >
-                    &lt;
+                <div className={s.galleryCart}>
+                  <img src={gallery[this.state.index]} />
+                  {
+                    gallery.length > 1 && <div className={s.galleryCart}>
+                      <div
+                        onClick={() => this.onClickLeft(gallery.length-1)}
+                        className={s.leftGallery} >
+                      &lt;
+                      </div>
+                      <div
+                        className={s.rightGallery}
+                        onClick={() => this.onClickRight(gallery.length-1)}
+                      >
+                      &gt;
+                      </div>
                     </div>
-                    <img src={gallery[this.state.index]} />
-                    <div
-                      className={s.rightGallery}
-                      onClick={() => this.onClickRight(gallery.length-1)}
-                    >
-                    &gt;
-                    </div>
-                  </div> : <div className={s.galleryCart}>
-                    <img src={gallery[this.state.index]} />
-                  </div>
-                }
+                  }
+                </div>
               </div>
             </div>;
           }

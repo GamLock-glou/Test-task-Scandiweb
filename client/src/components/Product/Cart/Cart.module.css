@@ -35,7 +35,7 @@
 }
 
 .rightWindow {
-    /* height: 185px; */
+    width: 288px;
     display: flex;
     flex-direction: row;
 }
